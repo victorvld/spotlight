@@ -18,7 +18,7 @@ public class FocusUnitControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void getFocusUnitTest() throws Exception {
+    void getFocusUnitsTest() throws Exception {
         var uri = "/units";
         var mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
