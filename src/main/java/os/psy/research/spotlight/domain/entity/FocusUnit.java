@@ -1,4 +1,4 @@
-package psy.research.spotlight.entity;
+package os.psy.research.spotlight.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,17 +14,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class FocusUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Setter(AccessLevel.NONE)
-    private String uuid;
-    private String userUuid;
+    //@Setter(AccessLevel.NONE)
+    private String id;
 
+    private String userUuid;
     @Builder
-    public FocusUnit(String userUuid) {
+    public FocusUnit(String userUuid, String id) {
         this.userUuid = userUuid;
+        this.id = id;
     }
 }
