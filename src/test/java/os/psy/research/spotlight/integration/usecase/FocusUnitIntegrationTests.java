@@ -25,9 +25,9 @@ public class FocusUnitIntegrationTests {
     private final FocusUnitRepository repository = new InMemoryFocusUnitRepository();
     private final FocusUnitService service = new FocusUnitService(repository);
 
-    @Nested
-    @DisplayName("When user has already registered some focus units.")
-    class WhenUserHasRecordedSomeFocusUnit {
+@Nested
+@DisplayName("When user has already registered some focus units.")
+class WhenUserHasRecordedSomeFocusUnit {
         private final String userId = "user";
 
         @BeforeEach

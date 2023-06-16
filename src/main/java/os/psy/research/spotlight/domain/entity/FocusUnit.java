@@ -9,12 +9,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class FocusUnit extends AbstractEntity {
 
     private String userUuid;
     @Builder
-    public FocusUnit(String userUuid) {
+    public FocusUnit(String userUuid, String uuid) {
+        super(uuid);
         this.userUuid = userUuid;
     }
 
