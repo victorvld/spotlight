@@ -5,7 +5,7 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 
 import java.util.List;
 
-public interface FocusUnitRepository extends JpaRepository<FocusUnit, String> {
+public interface FocusUnitRepository extends GenericFocusUnitRepository<FocusUnit> {
 
     List<FocusUnit> findByUserUuid(String userUuid);
 

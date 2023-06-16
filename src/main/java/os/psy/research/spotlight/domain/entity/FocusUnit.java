@@ -1,11 +1,6 @@
 package os.psy.research.spotlight.domain.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,16 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FocusUnit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    //@Setter(AccessLevel.NONE)
-    private String id;
+public class FocusUnit extends AbstractEntity {
 
     private String userUuid;
     @Builder
-    public FocusUnit(String userUuid, String id) {
+    public FocusUnit(String userUuid) {
         this.userUuid = userUuid;
-        this.id = id;
     }
+
 }

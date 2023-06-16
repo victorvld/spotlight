@@ -25,8 +25,8 @@ public class FocusUnitServiceTest {
     @Test
     void getFocusUnitsTest() {
         var userId = "user";
-        var unit1 = FocusUnit.builder().userUuid(userId).id("1").build();
-        var unit2 = FocusUnit.builder().userUuid(userId).id("2").build();
+        var unit1 = FocusUnit.builder().userUuid(userId).build();
+        var unit2 = FocusUnit.builder().userUuid(userId).build();
         var userUnits = List.of(unit1, unit2);
         when(repository.findByUserUuid(userId)).thenReturn(userUnits);
 

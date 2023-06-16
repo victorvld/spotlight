@@ -17,7 +17,7 @@ class FocusUnitMapperTest {
 
     @Test
     void testToDto() {
-        var entity = FocusUnit.builder().userUuid("userUuid").id("id").build();
+        var entity = FocusUnit.builder().userUuid("userUuid").build();
         var result = underTest.toDto(entity);
 
         Assertions.assertEquals(entity.getUserUuid(), result.getUserId());
