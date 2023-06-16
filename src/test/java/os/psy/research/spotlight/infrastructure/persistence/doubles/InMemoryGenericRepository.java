@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import os.psy.research.spotlight.domain.entity.AbstractEntity;
-import os.psy.research.spotlight.domain.repository.GenericFocusUnitRepository;
+import os.psy.research.spotlight.domain.repository.GenericRepository;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 
-public abstract class InMemoryGenericRepository<T extends AbstractEntity> implements GenericFocusUnitRepository<T> {
+public abstract class InMemoryGenericRepository<T extends AbstractEntity> implements GenericRepository<T> {
 
     private final Map<String, T> entities = new HashMap<>();
 
