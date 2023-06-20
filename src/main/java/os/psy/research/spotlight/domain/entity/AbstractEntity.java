@@ -17,12 +17,10 @@ import lombok.Setter;
 public abstract class AbstractEntity implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    //@Setter(AccessLevel.NONE)
     private String entityId;
 
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
-
 }
