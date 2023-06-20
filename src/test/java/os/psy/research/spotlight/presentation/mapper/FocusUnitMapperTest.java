@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import os.psy.research.spotlight.domain.entity.FocusUnit;
-import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
+import os.psy.research.spotlight.presentation.dto.RegisterFocusUnitRequest;
 
 class FocusUnitMapperTest {
 
@@ -22,15 +22,15 @@ class FocusUnitMapperTest {
         var result = underTest.toDto(entity);
 
         Assertions.assertEquals(entity.getUserUuid(), result.getUserId());
-        Assertions.assertEquals(entity.getId(), result.getId());
+        Assertions.assertEquals(entity.getEntityId(), result.getId());
     }
 
     @Test
     void testToEntity() {
-        var dto = FocusUnitDto.builder().userId("userUuid").build();
+        var dto = RegisterFocusUnitRequest.builder().userId("userUuid").build();
         var result = underTest.toEntity(dto);
 
-        Assertions.assertEquals(dto.getId(), result.getId());
+        Assertions.assertNull(result.getEntityId());
         Assertions.assertEquals(dto.getUserId(), result.getUserUuid());
     }
 }

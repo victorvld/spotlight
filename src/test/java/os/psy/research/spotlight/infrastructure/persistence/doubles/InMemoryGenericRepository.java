@@ -87,9 +87,9 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
     }
 
     public <S extends T> S save(S entity) {
-        if (entity.getId() == null) {
+        if (entity.getEntityId() == null) {
             // That's very ugly but enough for test propouse.
-            entity.setId(UUID.randomUUID().toString());
+            entity.setEntityId(UUID.randomUUID().toString());
         }
         return (S) putCloneInMap(entity);
     }
@@ -116,7 +116,7 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
         // Retrieve only the FocusUnits with matching IDs from the in-memory map
         return entities.values()
                 .stream()
-                .filter(T -> containsId(strings, T.getId()))
+                .filter(T -> containsId(strings, T.getEntityId()))
                 .toList();
     }
 
@@ -129,7 +129,7 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
     }
 
     public void delete(T entity) {
-        entities.remove(entity.getId());
+        entities.remove(entity.getEntityId());
     }
 
     public void deleteAllById(Iterable<? extends String> strings) {
@@ -171,7 +171,7 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
 
     private T putCloneInMap(T entity) {
         try {
-            return entities.put(entity.getId(), (T) entity.clone());
+            return entities.put(entity.getEntityId(), (T) entity.clone());
         } catch (CloneNotSupportedException e) {
             throw new UnclonnableEntity();
         }

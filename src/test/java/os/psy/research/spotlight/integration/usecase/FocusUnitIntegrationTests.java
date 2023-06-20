@@ -11,8 +11,6 @@ import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.infrastructure.persistence.doubles.InMemoryFocusUnitRepository;
 
-import java.util.List;
-
 public class FocusUnitIntegrationTests {
 
     // TODO: 03/06/2023 Playing around with different approaches.
@@ -21,20 +19,20 @@ public class FocusUnitIntegrationTests {
     Approach 2: @DataJpaTest - Not mean for use case integration tests.
     Approach 3: In memory database. This should be a custom one independent of Spring H2 in memory Database. It work so far.
      */
-
     private final FocusUnitRepository repository = new InMemoryFocusUnitRepository();
     private final FocusUnitService service = new FocusUnitService(repository);
 
-@Nested
-@DisplayName("When user has already registered some focus units.")
-class WhenUserHasRecordedSomeFocusUnit {
+    @Nested
+    @DisplayName("When user has already registered some focus units.")
+    class WhenUserHasRecordedSomeFocusUnit {
         private final String userId = "user";
 
         @BeforeEach
         void setUpScenario() {
             var unit1 = FocusUnit.builder().userUuid(userId).build();
             var unit2 = FocusUnit.builder().userUuid(userId).build();
-            repository.saveAll(List.of(unit1, unit2));
+            service.registerFocusUnit(unit1);
+            service.registerFocusUnit(unit2);
         }
 
         @AfterEach
@@ -48,6 +46,7 @@ class WhenUserHasRecordedSomeFocusUnit {
 
             Assertions.assertEquals(2, units.size());
         }
+
     }
 
 }

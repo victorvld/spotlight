@@ -1,9 +1,11 @@
 package os.psy.research.spotlight.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,12 +16,11 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.presentation.controller.FocusUnitController;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
-import os.psy.research.spotlight.presentation.dto.GetFocusUnitRequest;
+import os.psy.research.spotlight.presentation.dto.GetFocusUnitsRequest;
 import os.psy.research.spotlight.presentation.mapper.FocusUnitMapperImpl;
 
 import java.util.Collections;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -47,8 +48,9 @@ public class FocusUnitControllerTest {
         @Test
         void whenValidInput_thenReturns200() throws Exception {
             var userId = "user-uuid";
-            var request = GetFocusUnitRequest.builder().userId(userId).build();
+            var request = GetFocusUnitsRequest.builder().userId(userId).build();
             var units = Collections.singletonList(FocusUnit.builder().userUuid(userId).build());
+            var captor = ArgumentCaptor.forClass(String.class);
             when(underTest.getFocusUnits(userId)).thenReturn(units);
 
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
@@ -56,13 +58,14 @@ public class FocusUnitControllerTest {
                             .content(mapper.writeValueAsString(request)))
                     .andExpect(status().isOk());
 
-            verify(underTest, times(1)).getFocusUnits(userId);
+            verify(underTest, times(1)).getFocusUnits(captor.capture());
+            Assertions.assertEquals(userId, captor.getValue());
         }
 
         @Test
         void whenBlankUuid_thenReturns400() throws Exception {
             var userId = "";
-            var request = GetFocusUnitRequest.builder().userId(userId).build();
+            var request = GetFocusUnitsRequest.builder().userId(userId).build();
 
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -72,7 +75,7 @@ public class FocusUnitControllerTest {
 
         @Test
         void whenNullUuid_thenReturns400() throws Exception {
-            var request = GetFocusUnitRequest.builder().build();
+            var request = GetFocusUnitsRequest.builder().build();
 
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -114,6 +117,7 @@ public class FocusUnitControllerTest {
             var unitId = "unit-id";
             var unit = FocusUnit.builder().userUuid(userId).build();
             var request = FocusUnitDto.builder().userId(userId).build();
+            var captor = ArgumentCaptor.forClass(FocusUnit.class);
             var serviceResponse = FocusUnit.builder().userUuid(userId).uuid(unitId).build();
             when(underTest.registerFocusUnit(unit)).thenReturn(serviceResponse);
 
@@ -123,7 +127,9 @@ public class FocusUnitControllerTest {
                     .andExpect(status().isOk());
 
 
-            verify(underTest, times(1)).registerFocusUnit(any());
+            verify(underTest, times(1)).registerFocusUnit(captor.capture());
+            Assertions.assertEquals(userId, captor.getValue().getUserUuid());
+            Assertions.assertNull(captor.getValue().getEntityId());
         }
 
         @Test

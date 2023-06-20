@@ -11,10 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetFocusUnitRequest {
+public class RegisterFocusUnitRequest {
 
     @NotBlank(message = "Invalid user id. Empty id.")
     @NotNull(message = "Invalid user id. Null id.")
     private String userId;
-
 }

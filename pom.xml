@@ -20,7 +20,6 @@
         <app.version>0.0.1</app.version>
         <spring.boot.version>3.0.6</spring.boot.version>
         <java.version>20</java.version>
-        <javax.validation.version>2.0.1.Final</javax.validation.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <mvn.compiler.plugin.version>3.11.0</mvn.compiler.plugin.version>
     </properties>

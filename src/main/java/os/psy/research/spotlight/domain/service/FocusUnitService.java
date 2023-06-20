@@ -1,15 +1,14 @@
 package os.psy.research.spotlight.domain.service;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 import os.psy.research.spotlight.domain.entity.FocusUnit;
-import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
+import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 
 import java.util.List;
 
 @Service
-@Log4j2
+@Slf4j
 public class FocusUnitService {
     private final FocusUnitRepository repository;
 
@@ -19,12 +18,7 @@ public class FocusUnitService {
 
     public List<FocusUnit> getFocusUnits(String userUuid) {
         log.info("Retrieving all units for user: {}", userUuid);
-
         return repository.findByUserUuid(userUuid);
-    }
-
-    public FocusUnit saveFocusUnit(FocusUnit unit) {
-        return repository.save(unit);
     }
 
     public void deleteFocusUnits(String userId) {
@@ -32,6 +26,7 @@ public class FocusUnitService {
     }
 
     public FocusUnit registerFocusUnit(FocusUnit unit) {
-        return null;
+        log.info("Registering unit for user: {}", unit.getUserUuid());
+        return repository.save(unit);
     }
 }
