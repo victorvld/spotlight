@@ -7,6 +7,4 @@ import java.util.List;
 public interface FocusUnitRepository extends GenericRepository<FocusUnit> {
 
     List<FocusUnit> findByUserUuid(String userUuid);
-
-    void deleteByUserUuid(String userUuid);
 }

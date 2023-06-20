@@ -21,10 +21,6 @@ public class FocusUnitService {
         return repository.findByUserUuid(userUuid);
     }
 
-    public void deleteFocusUnits(String userId) {
-        repository.deleteByUserUuid(userId);
-    }
-
     public FocusUnit registerFocusUnit(FocusUnit unit) {
         log.info("Registering unit for user: {}", unit.getUserUuid());
         return repository.save(unit);

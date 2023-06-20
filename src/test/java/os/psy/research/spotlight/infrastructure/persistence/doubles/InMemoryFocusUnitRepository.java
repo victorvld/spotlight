@@ -19,13 +19,4 @@ public class InMemoryFocusUnitRepository extends InMemoryGenericRepository<Focus
         }
         return result;
     }
-
-    public void deleteByUserUuid(String userUuid) {
-        for (FocusUnit unit : getEntities()) {
-            if (unit.getUserUuid().equals(userUuid)) {
-                getEntities().remove(unit.getEntityId());
-
-            }
-        }
-    }
 }
