@@ -36,4 +36,16 @@ public class FocusUnitServiceTest {
         Assertions.assertEquals(2, units.size());
 
     }
+
+    @Test
+    void registerFocusUnitTest() {
+        var userId = "user";
+        var unit = FocusUnit.builder().userUuid(userId).build();
+        when(repository.save(unit)).thenReturn(unit);
+
+        var result = service.registerFocusUnit(unit);
+
+        Assertions.assertEquals(unit.getUserUuid(), result.getUserUuid());
+    }
+  
 }
