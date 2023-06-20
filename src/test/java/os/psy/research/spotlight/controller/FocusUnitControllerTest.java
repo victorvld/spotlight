@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(FocusUnitController.class)
 @ComponentScan(basePackageClasses = {FocusUnitMapperImpl.class})
 public class FocusUnitControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -174,4 +175,5 @@ public class FocusUnitControllerTest {
                     .andExpect(status().isNotAcceptable());
         }
     }
+
 }

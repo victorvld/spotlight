@@ -23,4 +23,5 @@ public abstract class AbstractEntity implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
 }

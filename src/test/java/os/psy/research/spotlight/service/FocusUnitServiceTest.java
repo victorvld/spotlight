@@ -47,4 +47,5 @@ public class FocusUnitServiceTest {
 
         Assertions.assertEquals(unit.getUserUuid(), result.getUserUuid());
     }
+  
 }

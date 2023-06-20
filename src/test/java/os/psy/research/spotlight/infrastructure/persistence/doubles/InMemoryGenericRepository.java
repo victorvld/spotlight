@@ -130,6 +130,7 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
 
     public void delete(T entity) {
         entities.remove(entity.getEntityId());
+
     }
 
     public void deleteAllById(Iterable<? extends String> strings) {
@@ -172,6 +173,7 @@ public abstract class InMemoryGenericRepository<T extends AbstractEntity> implem
     private T putCloneInMap(T entity) {
         try {
             return entities.put(entity.getEntityId(), (T) entity.clone());
+
         } catch (CloneNotSupportedException e) {
             throw new UnclonnableEntity();
         }

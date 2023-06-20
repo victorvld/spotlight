@@ -7,7 +7,6 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
 import os.psy.research.spotlight.presentation.dto.RegisterFocusUnitRequest;
 
-
 @Mapper(builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface FocusUnitMapper {
 
