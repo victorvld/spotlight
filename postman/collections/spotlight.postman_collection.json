@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "81ac5477-ec5a-4e74-827f-26ab1ccebd48",
+		"name": "spotlight",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24776454"
+	},
+	"item": [
+		{
+			"name": "Get Focus Units by User ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"test_81abf41a443b\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rest/os.psy.research.spotlight.v1.FocusUnitApi/units",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"os.psy.research.spotlight.v1.FocusUnitApi",
+						"units"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Focus Unit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"test_user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rest/os.psy.research.spotlight.v1.FocusUnitApi/unit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"os.psy.research.spotlight.v1.FocusUnitApi",
+						"unit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
