@@ -6,9 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
+import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
 
 import java.util.List;
 
@@ -25,22 +25,20 @@ public class FocusUnitServiceTest {
     @Test
     void getFocusUnitsTest() {
         var userId = "user";
-        var unit1 = FocusUnit.builder().userId(userId).build();
-        var unit2 = FocusUnit.builder().userId(userId).build();
+        var unit1 = FocusUnitMother.complete().build();
+        var unit2 = FocusUnitMother.complete().build();
         var userUnits = List.of(unit1, unit2);
         when(repository.findByUserUuid(userId)).thenReturn(userUnits);
 
         var units = service.getFocusUnits(userId);
 
         Assertions.assertEquals(2, units.size());
-        Assertions.assertEquals(2, units.size());
 
     }
 
     @Test
     void registerFocusUnitTest() {
-        var userId = "user";
-        var unit = FocusUnit.builder().userId(userId).build();
+        var unit = FocusUnitMother.complete().build();
         when(repository.save(unit)).thenReturn(unit);
 
         var result = service.registerFocusUnit(unit);

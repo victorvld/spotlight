@@ -17,6 +17,7 @@ public class FocusUnit extends AbstractEntity {
     private String userId;
 
     // linkedResources
+    private LinkedResource linkedResource;
 
     // workingTime
 
@@ -24,12 +25,11 @@ public class FocusUnit extends AbstractEntity {
 
     // Assessment
 
-
-
     @Builder
-    public FocusUnit(String userId, String id) {
+    public FocusUnit(String userId, String id, LinkedResource linkedResource) {
         super(id);
         this.userId = userId;
+        this.linkedResource = linkedResource;
     }
 
 }
