@@ -18,10 +18,10 @@ class FocusUnitMapperTest {
 
     @Test
     void testToDto() {
-        var entity = FocusUnit.builder().userUuid("userUuid").build();
+        var entity = FocusUnit.builder().userId("userUuid").build();
         var result = underTest.toDto(entity);
 
-        Assertions.assertEquals(entity.getUserUuid(), result.getUserId());
+        Assertions.assertEquals(entity.getUserId(), result.getUserId());
         Assertions.assertEquals(entity.getEntityId(), result.getId());
     }
 
@@ -31,6 +31,6 @@ class FocusUnitMapperTest {
         var result = underTest.toEntity(dto);
 
         Assertions.assertNull(result.getEntityId());
-        Assertions.assertEquals(dto.getUserId(), result.getUserUuid());
+        Assertions.assertEquals(dto.getUserId(), result.getUserId());
     }
 }

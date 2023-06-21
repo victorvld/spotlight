@@ -10,10 +10,8 @@ import os.psy.research.spotlight.presentation.dto.RegisterFocusUnitRequest;
 @Mapper(builder = @Builder(disableBuilder = true), componentModel = "spring")
 public interface FocusUnitMapper {
 
-    @Mapping(target = "userId", source = "userUuid")
     @Mapping(target = "id", source = "entityId")
     FocusUnitDto toDto(FocusUnit unit);
 
-    @Mapping(target = "userUuid", source = "userId")
     FocusUnit toEntity(RegisterFocusUnitRequest dto);
 }

@@ -50,7 +50,7 @@ public class FocusUnitControllerTest {
         void whenValidInput_thenReturns200() throws Exception {
             var userId = "user-uuid";
             var request = GetFocusUnitsRequest.builder().userId(userId).build();
-            var units = Collections.singletonList(FocusUnit.builder().userUuid(userId).build());
+            var units = Collections.singletonList(FocusUnit.builder().userId(userId).build());
             var captor = ArgumentCaptor.forClass(String.class);
             when(underTest.getFocusUnits(userId)).thenReturn(units);
 
@@ -116,10 +116,10 @@ public class FocusUnitControllerTest {
         void whenValidInput_thenReturns200() throws Exception {
             var userId = "user-id";
             var unitId = "unit-id";
-            var unit = FocusUnit.builder().userUuid(userId).build();
+            var unit = FocusUnit.builder().userId(userId).build();
             var request = FocusUnitDto.builder().userId(userId).build();
             var captor = ArgumentCaptor.forClass(FocusUnit.class);
-            var serviceResponse = FocusUnit.builder().userUuid(userId).uuid(unitId).build();
+            var serviceResponse = FocusUnit.builder().userId(userId).id(unitId).build();
             when(underTest.registerFocusUnit(unit)).thenReturn(serviceResponse);
 
             mockMvc.perform(post(url)
@@ -129,7 +129,7 @@ public class FocusUnitControllerTest {
 
 
             verify(underTest, times(1)).registerFocusUnit(captor.capture());
-            Assertions.assertEquals(userId, captor.getValue().getUserUuid());
+            Assertions.assertEquals(userId, captor.getValue().getUserId());
             Assertions.assertNull(captor.getValue().getEntityId());
         }
 

@@ -14,11 +14,22 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FocusUnit extends AbstractEntity {
 
-    private String userUuid;
+    private String userId;
+
+    // linkedResources
+
+    // workingTime
+
+    // breakTime
+
+    // Assessment
+
+
+
     @Builder
-    public FocusUnit(String userUuid, String uuid) {
-        super(uuid);
-        this.userUuid = userUuid;
+    public FocusUnit(String userId, String id) {
+        super(id);
+        this.userId = userId;
     }
 
 }

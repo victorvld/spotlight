@@ -29,8 +29,8 @@ public class FocusUnitIntegrationTests {
 
         @BeforeEach
         void setUpScenario() {
-            var unit1 = FocusUnit.builder().userUuid(userId).build();
-            var unit2 = FocusUnit.builder().userUuid(userId).build();
+            var unit1 = FocusUnit.builder().userId(userId).build();
+            var unit2 = FocusUnit.builder().userId(userId).build();
             service.registerFocusUnit(unit1);
             service.registerFocusUnit(unit2);
         }

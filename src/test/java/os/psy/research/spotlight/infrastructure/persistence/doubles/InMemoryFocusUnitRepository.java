@@ -13,7 +13,7 @@ public class InMemoryFocusUnitRepository extends InMemoryGenericRepository<Focus
     public List<FocusUnit> findByUserUuid(String userUuid) {
         List<FocusUnit> result = new ArrayList<>();
         for (FocusUnit unit : getEntities()) {
-            if (unit.getUserUuid().equals(userUuid)) {
+            if (unit.getUserId().equals(userUuid)) {
                 result.add(unit);
             }
         }
