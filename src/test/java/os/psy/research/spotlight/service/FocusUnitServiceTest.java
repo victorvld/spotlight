@@ -25,8 +25,8 @@ public class FocusUnitServiceTest {
     @Test
     void getFocusUnitsTest() {
         var userId = "user";
-        var unit1 = FocusUnit.builder().userUuid(userId).build();
-        var unit2 = FocusUnit.builder().userUuid(userId).build();
+        var unit1 = FocusUnit.builder().userId(userId).build();
+        var unit2 = FocusUnit.builder().userId(userId).build();
         var userUnits = List.of(unit1, unit2);
         when(repository.findByUserUuid(userId)).thenReturn(userUnits);
 
@@ -40,12 +40,12 @@ public class FocusUnitServiceTest {
     @Test
     void registerFocusUnitTest() {
         var userId = "user";
-        var unit = FocusUnit.builder().userUuid(userId).build();
+        var unit = FocusUnit.builder().userId(userId).build();
         when(repository.save(unit)).thenReturn(unit);
 
         var result = service.registerFocusUnit(unit);
 
-        Assertions.assertEquals(unit.getUserUuid(), result.getUserUuid());
+        Assertions.assertEquals(unit.getUserId(), result.getUserId());
     }
   
 }

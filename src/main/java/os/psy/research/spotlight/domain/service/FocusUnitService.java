@@ -22,7 +22,7 @@ public class FocusUnitService {
     }
 
     public FocusUnit registerFocusUnit(FocusUnit unit) {
-        log.info("Registering unit for user: {}", unit.getUserUuid());
+        log.info("Registering unit for user: {}", unit.getUserId());
         return repository.save(unit);
     }
 }
