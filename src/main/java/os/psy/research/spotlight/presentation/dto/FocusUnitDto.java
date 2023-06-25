@@ -19,5 +19,7 @@ public class FocusUnitDto {
     @NotNull(message = "Invalid user id. Null id.")
     private String userId;
 
+    private LinkedResourceDto linkedResourceDto;
+
     private String id;
 }

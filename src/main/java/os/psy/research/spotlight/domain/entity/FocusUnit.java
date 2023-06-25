@@ -6,12 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "focus_unit")
 @NoArgsConstructor
+@SuperBuilder
 public class FocusUnit extends AbstractEntity {
 
     private String userId;
@@ -24,12 +26,5 @@ public class FocusUnit extends AbstractEntity {
     // breakTime
 
     // Assessment
-
-    @Builder
-    public FocusUnit(String userId, String id, LinkedResource linkedResource) {
-        super(id);
-        this.userId = userId;
-        this.linkedResource = linkedResource;
-    }
 
 }

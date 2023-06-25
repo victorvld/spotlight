@@ -9,7 +9,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import os.psy.research.spotlight.presentation.dto.GetFocusUnitsRequest;
+import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
 
 
 @ExtendWith(MockitoExtension.class)

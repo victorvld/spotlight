@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.presentation.dto;
+package os.psy.research.spotlight.presentation.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetFocusUnitsRequest {
+
+
+public class GetFocusUnitRequest {
 
     @NotBlank(message = "Invalid user id. Empty id.")
     @NotNull(message = "Invalid user id. Null id.")

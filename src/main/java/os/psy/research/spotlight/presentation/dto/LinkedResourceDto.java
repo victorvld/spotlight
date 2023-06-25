@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.domain.entity;
+package os.psy.research.spotlight.presentation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LinkedResource {
-
+public class LinkedResourceDto {
     String projectId;
-
     String taskId;
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
-import os.psy.research.spotlight.presentation.dto.GetFocusUnitsRequest;
-import os.psy.research.spotlight.presentation.dto.RegisterFocusUnitRequest;
+import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
+import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
 import os.psy.research.spotlight.presentation.mapper.FocusUnitMapper;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 
