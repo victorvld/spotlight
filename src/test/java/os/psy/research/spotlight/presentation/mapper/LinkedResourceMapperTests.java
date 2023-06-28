@@ -21,8 +21,8 @@ public class LinkedResourceMapperTests {
         var entity = LinkedResource.builder().projectId("projectId").taskId("taskId").build();
         var result = underTest.toDto(entity);
 
-        Assertions.assertEquals(entity.getProjectId(), result.getProjectId());
-        Assertions.assertEquals(entity.getTaskId(), result.getTaskId());
+        Assertions.assertEquals(entity.getProjectId(), result.projectId());
+        Assertions.assertEquals(entity.getTaskId(), result.taskId());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class LinkedResourceMapperTests {
         var dto = LinkedResourceDto.builder().projectId("projectId").taskId("taskId").build();
         var result = underTest.toEntity(dto);
 
-        Assertions.assertEquals(dto.getProjectId(), result.getProjectId());
-        Assertions.assertEquals(dto.getTaskId(), result.getTaskId());
+        Assertions.assertEquals(dto.projectId(), result.getProjectId());
+        Assertions.assertEquals(dto.taskId(), result.getTaskId());
     }
 }

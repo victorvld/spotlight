@@ -12,5 +12,4 @@ public interface LinkedResourceMapper {
 
     @Named("dtoToLinkedResource")
     LinkedResource toEntity(LinkedResourceDto dto);
-
 }

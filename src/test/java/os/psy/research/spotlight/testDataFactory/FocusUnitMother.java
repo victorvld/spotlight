@@ -2,6 +2,10 @@ package os.psy.research.spotlight.testDataFactory;
 
 import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.entity.LinkedResource;
+import os.psy.research.spotlight.domain.entity.WorkingTime;
+
+import java.time.Duration;
+import java.time.OffsetDateTime;
 
 public class FocusUnitMother {
 
@@ -11,6 +15,10 @@ public class FocusUnitMother {
                 .linkedResource(LinkedResource.builder()
                         .projectId("projectId")
                         .taskId("taskId")
+                        .build()).workingTime(WorkingTime.builder()
+                        .startedAt(OffsetDateTime.MIN)
+                        .completedAt(OffsetDateTime.MAX)
+                        .selectedDuration(Duration.ZERO)
                         .build());
     }
 }

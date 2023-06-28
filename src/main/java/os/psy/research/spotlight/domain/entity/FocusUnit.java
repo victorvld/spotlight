@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 
 @Entity
 @Getter
@@ -22,6 +23,8 @@ public class FocusUnit extends AbstractEntity {
     private LinkedResource linkedResource;
 
     // workingTime
+
+    private WorkingTime workingTime;
 
     // breakTime
 

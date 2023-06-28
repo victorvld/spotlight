@@ -22,6 +22,10 @@ import os.psy.research.spotlight.presentation.mapper.LinkedResourceMapperImpl;
 import os.psy.research.spotlight.testDataFactory.FocusUnitDtoMother;
 import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 
 import static org.mockito.Mockito.times;
@@ -127,10 +131,14 @@ public class FocusUnitControllerTest {
 
             verify(underTest, times(1)).registerFocusUnit(captor.capture());
             Assertions.assertNull(captor.getValue().getEntityId());
-            Assertions.assertEquals("userId", captor.getValue().getUserId());
-            Assertions.assertEquals("projectId", captor.getValue().getLinkedResource().getProjectId());
-            Assertions.assertEquals("taskId", captor.getValue().getLinkedResource().getTaskId());
+            Assertions.assertEquals(request.userId(), captor.getValue().getUserId());
+            Assertions.assertEquals(request.linkedResourceDto().projectId(), captor.getValue().getLinkedResource().getProjectId());
+            Assertions.assertEquals(request.linkedResourceDto().taskId(), captor.getValue().getLinkedResource().getTaskId());
+            Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(captor.getValue().getWorkingTime().startedAt()));
+            Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(captor.getValue().getWorkingTime().completedAt()));
+            Assertions.assertEquals(request.workingTimeDto().selectedDuration(), captor.getValue().getWorkingTime().selectedDuration());
         }
+
 
         @Test
         void whenBlankUuid_thenReturns400() throws Exception {
