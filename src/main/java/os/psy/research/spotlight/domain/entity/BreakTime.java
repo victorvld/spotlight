@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @Getter
 @Builder
 @AllArgsConstructor
-public class WorkingTime {
+public class BreakTime {
     private final OffsetDateTime startedAt;
     private final OffsetDateTime completedAt;
     private final Duration selectedDuration;

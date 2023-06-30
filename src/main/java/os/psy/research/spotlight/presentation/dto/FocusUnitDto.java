@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import os.psy.research.spotlight.domain.entity.BreakTime;
 
 @Builder
 public record FocusUnitDto(
@@ -14,6 +15,10 @@ public record FocusUnitDto(
         @Valid LinkedResourceDto linkedResourceDto,
         @NotNull
         @Valid WorkingTimeDto workingTimeDto,
+
+        @NotNull
+        @Valid BreakTimeDto breakTimeDto,
+
         String id) {
 
 }

@@ -28,6 +28,8 @@ public class FocusUnit extends AbstractEntity {
 
     // breakTime
 
+    private BreakTime breakTime;
+
     // Assessment
 
 }

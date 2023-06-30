@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.presentation.controller.FocusUnitController;
+import os.psy.research.spotlight.presentation.dto.BreakTimeDto;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
 import os.psy.research.spotlight.presentation.dto.LinkedResourceDto;
 import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
@@ -125,7 +126,7 @@ public class FocusUnitControllerTest {
 
         @Test
         void whenValidInput_thenReturns200() throws Exception {
-            var request = DtoObjectMother.complete().build();
+            var request = DtoObjectMother.FocusUnit.complete().build();
             var captor = ArgumentCaptor.forClass(FocusUnit.class);
 
             mockMvc.perform(post(url)
@@ -138,21 +139,11 @@ public class FocusUnitControllerTest {
             Assertions.assertEquals(request.userId(), captor.getValue().getUserId());
             Assertions.assertEquals(request.linkedResourceDto().projectId(), captor.getValue().getLinkedResource().getProjectId());
             Assertions.assertEquals(request.linkedResourceDto().taskId(), captor.getValue().getLinkedResource().getTaskId());
-            Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(captor.getValue().getWorkingTime().startedAt()));
-            Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(captor.getValue().getWorkingTime().completedAt()));
-            Assertions.assertEquals(request.workingTimeDto().selectedDuration(), captor.getValue().getWorkingTime().selectedDuration());
+            Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(captor.getValue().getWorkingTime().getStartedAt()));
+            Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(captor.getValue().getWorkingTime().getCompletedAt()));
+            Assertions.assertEquals(request.workingTimeDto().selectedDuration(), captor.getValue().getWorkingTime().getSelectedDuration());
         }
 
-
-        static Stream<Arguments> badRequestProvider() {
-            return Stream.of(
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(" ").build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(null).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(null).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(WorkingTimeDto.builder().build()).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(LinkedResourceDto.builder().build()).build())
-            );
-        }
 
         @ParameterizedTest
         @MethodSource("badRequestProvider")
@@ -194,6 +185,18 @@ public class FocusUnitControllerTest {
                             .contentType(MediaType.APPLICATION_JSON_VALUE))
                     .andExpect(status().isNotAcceptable());
         }
-    }
 
+        static Stream<Arguments> badRequestProvider() {
+            return Stream.of(
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(" ").build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(WorkingTimeDto.builder().build()).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(LinkedResourceDto.builder().build()).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(BreakTimeDto.builder().build()).build())
+            );
+        }
+
+    }
 }
