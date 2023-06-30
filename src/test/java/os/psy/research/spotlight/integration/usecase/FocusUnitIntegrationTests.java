@@ -49,9 +49,9 @@ public class FocusUnitIntegrationTests {
             Assertions.assertEquals(2, units.size());
             Assertions.assertEquals("projectId", units.get(0).getLinkedResource().getProjectId());
             Assertions.assertEquals("taskId", units.get(0).getLinkedResource().getTaskId());
-            Assertions.assertEquals(OffsetDateTime.MIN, units.get(0).getWorkingTime().startedAt());
-            Assertions.assertEquals(OffsetDateTime.MAX, units.get(0).getWorkingTime().completedAt());
-            Assertions.assertEquals(Duration.ZERO, units.get(0).getWorkingTime().selectedDuration());
+            Assertions.assertEquals(OffsetDateTime.MIN, units.get(0).getWorkingTime().getStartedAt());
+            Assertions.assertEquals(OffsetDateTime.MAX, units.get(0).getWorkingTime().getCompletedAt());
+            Assertions.assertEquals(Duration.ZERO, units.get(0).getWorkingTime().getSelectedDuration());
         }
 
     }

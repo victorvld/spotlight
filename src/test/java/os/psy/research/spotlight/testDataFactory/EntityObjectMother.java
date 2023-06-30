@@ -1,5 +1,6 @@
 package os.psy.research.spotlight.testDataFactory;
 
+import os.psy.research.spotlight.domain.entity.BreakTime;
 import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.entity.LinkedResource;
 import os.psy.research.spotlight.domain.entity.WorkingTime;
@@ -17,6 +18,11 @@ public class EntityObjectMother {
                         .taskId("taskId")
                         .build())
                 .workingTime(WorkingTime.builder()
+                        .startedAt(OffsetDateTime.MIN)
+                        .completedAt(OffsetDateTime.MAX)
+                        .selectedDuration(Duration.ZERO)
+                        .build())
+                .breakTime(BreakTime.builder()
                         .startedAt(OffsetDateTime.MIN)
                         .completedAt(OffsetDateTime.MAX)
                         .selectedDuration(Duration.ZERO)
