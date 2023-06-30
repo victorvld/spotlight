@@ -11,6 +11,9 @@ import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.infrastructure.persistence.doubles.InMemoryFocusUnitRepository;
 import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
 
+import java.time.Duration;
+import java.time.OffsetDateTime;
+
 public class FocusUnitIntegrationTests {
 
     // TODO: 03/06/2023 Playing around with different approaches.
@@ -46,6 +49,9 @@ public class FocusUnitIntegrationTests {
             Assertions.assertEquals(2, units.size());
             Assertions.assertEquals("projectId", units.get(0).getLinkedResource().getProjectId());
             Assertions.assertEquals("taskId", units.get(0).getLinkedResource().getTaskId());
+            Assertions.assertEquals(OffsetDateTime.MIN, units.get(0).getWorkingTime().startedAt());
+            Assertions.assertEquals(OffsetDateTime.MAX, units.get(0).getWorkingTime().completedAt());
+            Assertions.assertEquals(Duration.ZERO, units.get(0).getWorkingTime().selectedDuration());
         }
 
     }

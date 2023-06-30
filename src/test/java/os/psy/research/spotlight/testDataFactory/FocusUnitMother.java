@@ -9,13 +9,14 @@ import java.time.OffsetDateTime;
 
 public class FocusUnitMother {
 
-    public static FocusUnit.FocusUnitBuilder complete() {
+    public static FocusUnit.FocusUnitBuilder<?, ?> complete() {
         return FocusUnit.builder()
                 .userId("userId")
                 .linkedResource(LinkedResource.builder()
                         .projectId("projectId")
                         .taskId("taskId")
-                        .build()).workingTime(WorkingTime.builder()
+                        .build())
+                .workingTime(WorkingTime.builder()
                         .startedAt(OffsetDateTime.MIN)
                         .completedAt(OffsetDateTime.MAX)
                         .selectedDuration(Duration.ZERO)

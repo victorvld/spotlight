@@ -17,9 +17,9 @@ public class FocusUnitDtoMother {
                         .taskId("taskId")
                         .build())
                 .workingTimeDto(WorkingTimeDto.builder()
-                        .startedAt(OffsetDateTime.parse("2021-09-30T15:30:00+01:00"))
-                        .selectedDuration(Duration.ofMinutes(25))
-                        .completedAt(OffsetDateTime.parse("2021-09-30T15:55:00+01:00"))
+                        .startedAt(OffsetDateTime.MIN)
+                        .completedAt(OffsetDateTime.MAX)
+                        .selectedDuration(Duration.ZERO)
                         .build());
     }
 }
