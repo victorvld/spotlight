@@ -19,7 +19,7 @@ class GlobalExceptionHandlerTest {
     private GlobalExceptionHandler exceptionHandler;
     @Test
     void handleValidationErrors() {
-        var bindingResults = new DataBinder(new GetFocusUnitsRequest()).getBindingResult();
+        var bindingResults = new DataBinder(new GetFocusUnitsRequest("userId")).getBindingResult();
 
         var exception = new MethodArgumentNotValidException((MethodParameter) null, bindingResults);
 

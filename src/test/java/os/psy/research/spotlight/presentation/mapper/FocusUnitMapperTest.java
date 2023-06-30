@@ -51,11 +51,11 @@ class FocusUnitMapperTest {
         var result = underTest.toEntity(request);
 
         Assertions.assertNull(result.getEntityId());
-        Assertions.assertEquals(request.getUserId(), result.getUserId());
-        Assertions.assertEquals(request.getLinkedResourceDto().projectId(), result.getLinkedResource().getProjectId());
-        Assertions.assertEquals(request.getLinkedResourceDto().taskId(), result.getLinkedResource().getTaskId());
-        Assertions.assertTrue(request.getWorkingTimeDto().startedAt().isEqual(result.getWorkingTime().startedAt()));
-        Assertions.assertTrue(request.getWorkingTimeDto().completedAt().isEqual(result.getWorkingTime().completedAt()));
-        Assertions.assertEquals(request.getWorkingTimeDto().selectedDuration(), result.getWorkingTime().selectedDuration());
+        Assertions.assertEquals(request.userId(), result.getUserId());
+        Assertions.assertEquals(request.linkedResourceDto().projectId(), result.getLinkedResource().getProjectId());
+        Assertions.assertEquals(request.linkedResourceDto().taskId(), result.getLinkedResource().getTaskId());
+        Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(result.getWorkingTime().startedAt()));
+        Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(result.getWorkingTime().completedAt()));
+        Assertions.assertEquals(request.workingTimeDto().selectedDuration(), result.getWorkingTime().selectedDuration());
     }
 }

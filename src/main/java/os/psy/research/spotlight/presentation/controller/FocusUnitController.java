@@ -31,7 +31,7 @@ public class FocusUnitController {
     @GetMapping(value = "/units", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     ResponseEntity<List<FocusUnitDto>> getFocusUnits(@Valid @RequestBody GetFocusUnitsRequest request) {
-        var units = service.getFocusUnits(request.getUserId());
+        var units = service.getFocusUnits(request.userId());
         return new ResponseEntity<>(units.stream().map(mapper::toDto).toList(), HttpStatus.OK);
     }
 
