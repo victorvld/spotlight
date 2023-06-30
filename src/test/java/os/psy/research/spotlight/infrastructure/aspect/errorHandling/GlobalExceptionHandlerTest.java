@@ -9,7 +9,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import os.psy.research.spotlight.presentation.dto.GetFocusUnitsRequest;
+import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -19,7 +19,7 @@ class GlobalExceptionHandlerTest {
     private GlobalExceptionHandler exceptionHandler;
     @Test
     void handleValidationErrors() {
-        var bindingResults = new DataBinder(new GetFocusUnitsRequest()).getBindingResult();
+        var bindingResults = new DataBinder(new GetFocusUnitsRequest("userId")).getBindingResult();
 
         var exception = new MethodArgumentNotValidException((MethodParameter) null, bindingResults);
 

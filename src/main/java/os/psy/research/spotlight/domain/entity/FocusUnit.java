@@ -6,30 +6,28 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "focus_unit")
 @NoArgsConstructor
+@SuperBuilder
 public class FocusUnit extends AbstractEntity {
 
     private String userId;
 
     // linkedResources
+    private LinkedResource linkedResource;
 
     // workingTime
+
+    private WorkingTime workingTime;
 
     // breakTime
 
     // Assessment
-
-
-
-    @Builder
-    public FocusUnit(String userId, String id) {
-        super(id);
-        this.userId = userId;
-    }
 
 }
