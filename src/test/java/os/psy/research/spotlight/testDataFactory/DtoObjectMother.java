@@ -7,7 +7,7 @@ import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 
-public class FocusUnitDtoMother {
+public class DtoObjectMother {
     public static FocusUnitDto.FocusUnitDtoBuilder complete() {
         return FocusUnitDto.builder()
                 .userId("userId")

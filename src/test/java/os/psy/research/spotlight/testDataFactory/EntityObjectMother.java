@@ -7,7 +7,7 @@ import os.psy.research.spotlight.domain.entity.WorkingTime;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 
-public class FocusUnitMother {
+public class EntityObjectMother {
 
     public static FocusUnit.FocusUnitBuilder<?, ?> complete() {
         return FocusUnit.builder()

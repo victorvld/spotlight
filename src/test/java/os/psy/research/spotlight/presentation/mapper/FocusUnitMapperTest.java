@@ -8,11 +8,10 @@ import org.springframework.test.util.ReflectionTestUtils;
 import os.psy.research.spotlight.presentation.dto.LinkedResourceDto;
 import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
-import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
+import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 
 import java.time.Duration;
 import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
 
 class FocusUnitMapperTest {
 
@@ -29,7 +28,7 @@ class FocusUnitMapperTest {
 
     @Test
     void testToDto() {
-        var entity = FocusUnitMother.complete().build();
+        var entity = EntityObjectMother.complete().build();
         var result = underTest.toDto(entity);
 
         Assertions.assertEquals(entity.getUserId(), result.userId());

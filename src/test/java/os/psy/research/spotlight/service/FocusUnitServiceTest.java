@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
-import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
+import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -33,7 +33,7 @@ public class FocusUnitServiceTest {
 
     @Test
     void registerFocusUnitTest() {
-        var unit = FocusUnitMother.complete().build();
+        var unit = EntityObjectMother.complete().build();
         when(repository.save(unit)).thenReturn(null);
 
         service.registerFocusUnit(unit);

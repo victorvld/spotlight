@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,17 +19,18 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.presentation.controller.FocusUnitController;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
+import os.psy.research.spotlight.presentation.dto.LinkedResourceDto;
+import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
+import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
 import os.psy.research.spotlight.presentation.mapper.FocusUnitMapperImpl;
 import os.psy.research.spotlight.presentation.mapper.LinkedResourceMapperImpl;
-import os.psy.research.spotlight.testDataFactory.FocusUnitDtoMother;
-import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
+import os.psy.research.spotlight.testDataFactory.DtoObjectMother;
+import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
+import os.psy.research.spotlight.testDataFactory.RequestObjectMother;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -58,7 +62,7 @@ public class FocusUnitControllerTest {
             var userId = "user-uuid";
             var request = GetFocusUnitsRequest.builder().userId(userId).build();
             var captor = ArgumentCaptor.forClass(String.class);
-            var unit = FocusUnitMother.complete().build();
+            var unit = EntityObjectMother.complete().build();
             when(underTest.getFocusUnits(userId)).thenReturn(Collections.singletonList(unit));
 
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
@@ -121,7 +125,7 @@ public class FocusUnitControllerTest {
 
         @Test
         void whenValidInput_thenReturns200() throws Exception {
-            var request = FocusUnitDtoMother.complete().build();
+            var request = DtoObjectMother.complete().build();
             var captor = ArgumentCaptor.forClass(FocusUnit.class);
 
             mockMvc.perform(post(url)
@@ -140,10 +144,19 @@ public class FocusUnitControllerTest {
         }
 
 
-        @Test
-        void whenBlankUuid_thenReturns400() throws Exception {
-            var userId = "";
-            var request = FocusUnitDto.builder().userId(userId).build();
+        static Stream<Arguments> badRequestProvider() {
+            return Stream.of(
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(" ").build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(WorkingTimeDto.builder().build()).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedResourceDto(LinkedResourceDto.builder().build()).build())
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource("badRequestProvider")
+        void whenBlankUuid_thenReturns400(RegisterFocusUnitRequest request) throws Exception {
 
             mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON_VALUE)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)

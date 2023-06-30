@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import os.psy.research.spotlight.domain.repository.FocusUnitRepository;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.infrastructure.persistence.doubles.InMemoryFocusUnitRepository;
-import os.psy.research.spotlight.testDataFactory.FocusUnitMother;
+import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -31,8 +31,8 @@ public class FocusUnitIntegrationTests {
 
         @BeforeEach
         void setUpScenario() {
-            var unit1 = FocusUnitMother.complete().build();
-            var unit2 = FocusUnitMother.complete().build();
+            var unit1 = EntityObjectMother.complete().build();
+            var unit2 = EntityObjectMother.complete().build();
             service.registerFocusUnit(unit1);
             service.registerFocusUnit(unit2);
         }
