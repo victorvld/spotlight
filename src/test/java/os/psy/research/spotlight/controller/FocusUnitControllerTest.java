@@ -126,7 +126,7 @@ public class FocusUnitControllerTest {
 
         @Test
         void whenValidInput_thenReturns200() throws Exception {
-            var request = DtoObjectMother.FocusUnit.complete().build();
+            var request = RequestObjectMother.RegisterFocusUnit.complete().build();
             var captor = ArgumentCaptor.forClass(FocusUnit.class);
 
             mockMvc.perform(post(url)
@@ -142,6 +142,9 @@ public class FocusUnitControllerTest {
             Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(captor.getValue().getWorkingTime().getStartedAt()));
             Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(captor.getValue().getWorkingTime().getCompletedAt()));
             Assertions.assertEquals(request.workingTimeDto().selectedDuration(), captor.getValue().getWorkingTime().getSelectedDuration());
+            Assertions.assertTrue(request.breakTimeDto().startedAt().isEqual(captor.getValue().getBreakTime().getStartedAt()));
+            Assertions.assertTrue(request.breakTimeDto().completedAt().isEqual(captor.getValue().getBreakTime().getCompletedAt()));
+            Assertions.assertEquals(request.breakTimeDto().selectedDuration(), captor.getValue().getBreakTime().getSelectedDuration());
         }
 
 
