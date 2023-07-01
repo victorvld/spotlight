@@ -25,8 +25,9 @@ import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
 import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
 import os.psy.research.spotlight.presentation.mapper.FocusUnitMapperImpl;
+import os.psy.research.spotlight.presentation.mapper.InterruptionMapper;
 import os.psy.research.spotlight.presentation.mapper.LinkedResourceMapperImpl;
-import os.psy.research.spotlight.testDataFactory.DtoObjectMother;
+import os.psy.research.spotlight.presentation.mapper.WorkingTimeMapper;
 import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 import os.psy.research.spotlight.testDataFactory.RequestObjectMother;
 
@@ -41,7 +42,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(FocusUnitController.class)
-@ComponentScan(basePackageClasses = {FocusUnitMapperImpl.class, LinkedResourceMapperImpl.class})
+@ComponentScan(basePackageClasses = {FocusUnitMapperImpl.class, LinkedResourceMapperImpl.class, WorkingTimeMapper.class, InterruptionMapper.class})
 public class FocusUnitControllerTest {
 
     @Autowired
@@ -139,12 +140,22 @@ public class FocusUnitControllerTest {
             Assertions.assertEquals(request.userId(), captor.getValue().getUserId());
             Assertions.assertEquals(request.linkedResourceDto().projectId(), captor.getValue().getLinkedResource().getProjectId());
             Assertions.assertEquals(request.linkedResourceDto().taskId(), captor.getValue().getLinkedResource().getTaskId());
+
             Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(captor.getValue().getWorkingTime().getStartedAt()));
             Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(captor.getValue().getWorkingTime().getCompletedAt()));
             Assertions.assertEquals(request.workingTimeDto().selectedDuration(), captor.getValue().getWorkingTime().getSelectedDuration());
+            Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).type(), captor.getValue().getWorkingTime().getInterruptions().get(0).getType());
+            Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).reasonType(), captor.getValue().getWorkingTime().getInterruptions().get(0).getReasonType());
+            Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).recordedAt(), captor.getValue().getWorkingTime().getInterruptions().get(0).getRecordedAt());
+            Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).duration(), captor.getValue().getWorkingTime().getInterruptions().get(0).getDuration());
+
             Assertions.assertTrue(request.breakTimeDto().startedAt().isEqual(captor.getValue().getBreakTime().getStartedAt()));
             Assertions.assertTrue(request.breakTimeDto().completedAt().isEqual(captor.getValue().getBreakTime().getCompletedAt()));
             Assertions.assertEquals(request.breakTimeDto().selectedDuration(), captor.getValue().getBreakTime().getSelectedDuration());
+            Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).type(), captor.getValue().getBreakTime().getInterruptions().get(0).getType());
+            Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).reasonType(), captor.getValue().getBreakTime().getInterruptions().get(0).getReasonType());
+            Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).recordedAt(), captor.getValue().getBreakTime().getInterruptions().get(0).getRecordedAt());
+            Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).duration(), captor.getValue().getBreakTime().getInterruptions().get(0).getDuration());
         }
 
 
