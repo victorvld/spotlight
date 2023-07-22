@@ -1,10 +1,6 @@
 package os.psy.research.spotlight.testDataFactory;
 
-import os.psy.research.spotlight.domain.entity.BreakTime;
-import os.psy.research.spotlight.domain.entity.FocusUnit;
-import os.psy.research.spotlight.domain.entity.Interruption;
-import os.psy.research.spotlight.domain.entity.LinkedResource;
-import os.psy.research.spotlight.domain.entity.WorkingTime;
+import os.psy.research.spotlight.domain.entity.*;
 
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -40,6 +36,10 @@ public class EntityObjectMother {
                                 .reasonType("reasonType")
                                 .recordedAt(OffsetDateTime.MIN)
                                 .build()))
+                        .build())
+                .userAssessment(UserAssessment.builder()
+                        .mood("mood")
+                        .feedback("feedback")
                         .build());
     }
 }

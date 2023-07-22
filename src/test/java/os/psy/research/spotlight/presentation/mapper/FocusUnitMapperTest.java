@@ -18,12 +18,14 @@ class FocusUnitMapperTest {
         var linkedResourceMapper = Mappers.getMapper(LinkedResourceMapper.class);
         var workingTimeMapper = Mappers.getMapper(WorkingTimeMapper.class);
         var breakTimeMapper = Mappers.getMapper(BreakTimeMapper.class);
+        var userAssessmentMapper = Mappers.getMapper(UserAssessmentMapper.class);
         var interruptionMapper = Mappers.getMapper(InterruptionMapper.class);
         ReflectionTestUtils.setField(underTest, "linkedResourceMapper", linkedResourceMapper);
         ReflectionTestUtils.setField(underTest, "workingTimeMapper", workingTimeMapper);
         ReflectionTestUtils.setField(underTest, "breakTimeMapper", breakTimeMapper);
         ReflectionTestUtils.setField(workingTimeMapper, "interruptionMapper", interruptionMapper);
         ReflectionTestUtils.setField(breakTimeMapper, "interruptionMapper", interruptionMapper);
+        ReflectionTestUtils.setField(underTest, "userAssessmentMapper", userAssessmentMapper);
     }
 
     @Test
@@ -51,6 +53,9 @@ class FocusUnitMapperTest {
         Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getReasonType(), result.breakTimeDto().interruptionsDto().get(0).reasonType());
         Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getRecordedAt(), result.breakTimeDto().interruptionsDto().get(0).recordedAt());
         Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getDuration(), result.breakTimeDto().interruptionsDto().get(0).duration());
+
+        Assertions.assertEquals(entity.getUserAssessment().getMood(), result.userAssessmentDto().mood());
+        Assertions.assertEquals(entity.getUserAssessment().getFeedback(), result.userAssessmentDto().feedback());
     }
 
     @Test
@@ -80,5 +85,7 @@ class FocusUnitMapperTest {
         Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).recordedAt(), result.getBreakTime().getInterruptions().get(0).getRecordedAt());
         Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).duration(), result.getBreakTime().getInterruptions().get(0).getDuration());
 
+        Assertions.assertEquals(request.userAssessmentDto().mood(), result.getUserAssessment().getMood());
+        Assertions.assertEquals(request.userAssessmentDto().feedback(), result.getUserAssessment().getFeedback());
     }
 }

@@ -1,5 +1,6 @@
 package os.psy.research.spotlight.presentation.dto;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public record FocusUnitDto(
         @NotNull
         @Valid BreakTimeDto breakTimeDto,
 
+        @Nullable UserAssessmentDto userAssessmentDto,
         String id) {
 
 }

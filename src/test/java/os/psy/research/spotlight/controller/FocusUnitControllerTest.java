@@ -156,6 +156,9 @@ public class FocusUnitControllerTest {
             Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).reasonType(), captor.getValue().getBreakTime().getInterruptions().get(0).getReasonType());
             Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).recordedAt(), captor.getValue().getBreakTime().getInterruptions().get(0).getRecordedAt());
             Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).duration(), captor.getValue().getBreakTime().getInterruptions().get(0).getDuration());
+
+            Assertions.assertEquals(request.userAssessmentDto().mood(), captor.getValue().getUserAssessment().getMood());
+            Assertions.assertEquals(request.userAssessmentDto().feedback(), captor.getValue().getUserAssessment().getFeedback());
         }
 
 

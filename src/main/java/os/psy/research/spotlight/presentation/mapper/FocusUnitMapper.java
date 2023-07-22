@@ -7,7 +7,7 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
 import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
 
-@Mapper(componentModel = "spring", uses = {LinkedResourceMapper.class, WorkingTimeMapper.class, BreakTimeMapper.class})
+@Mapper(componentModel = "spring", uses = {LinkedResourceMapper.class, WorkingTimeMapper.class, BreakTimeMapper.class, UserAssessmentMapper.class})
 public interface FocusUnitMapper {
 
     @Named("focusUnitToDto")
@@ -15,11 +15,13 @@ public interface FocusUnitMapper {
     @Mapping(target = "linkedResourceDto", source = "linkedResource", qualifiedByName = "linkedResourceToDto")
     @Mapping(target = "workingTimeDto", source = "workingTime", qualifiedByName = "workingTimeToDto")
     @Mapping(target = "breakTimeDto", source = "breakTime", qualifiedByName = "breakTimeToDto")
+    @Mapping(target = "userAssessmentDto", source = "userAssessment", qualifiedByName = "userAssessmentToDto")
     FocusUnitDto toDto(FocusUnit unit);
 
     @Named("registeredRequestToFocusUnit")
     @Mapping(target = "linkedResource", source = "linkedResourceDto", qualifiedByName = "dtoToLinkedResource")
     @Mapping(target = "workingTime", source = "workingTimeDto", qualifiedByName = "dtoToWorkingTime")
     @Mapping(target = "breakTime", source = "breakTimeDto", qualifiedByName = "dtoToBreakTime")
+    @Mapping(target = "userAssessment", source = "userAssessmentDto", qualifiedByName = "dtoToUserAssessment")
     FocusUnit toEntity(RegisterFocusUnitRequest dto);
 }

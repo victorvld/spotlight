@@ -1,9 +1,6 @@
 package os.psy.research.spotlight.testDataFactory;
 
-import os.psy.research.spotlight.presentation.dto.BreakTimeDto;
-import os.psy.research.spotlight.presentation.dto.InterruptionDto;
-import os.psy.research.spotlight.presentation.dto.LinkedResourceDto;
-import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
+import os.psy.research.spotlight.presentation.dto.*;
 import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
 
 import java.time.Duration;
@@ -41,6 +38,10 @@ public class RequestObjectMother {
                                     .recordedAt(OffsetDateTime.MIN)
                                     .duration(Duration.ZERO)
                                     .build()))
+                            .build())
+                    .userAssessmentDto(UserAssessmentDto.builder()
+                            .feedback("feedback")
+                            .mood("mood")
                             .build());
         }
     }

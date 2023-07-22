@@ -2,12 +2,10 @@ package os.psy.research.spotlight.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 
 @Entity
 @Getter
@@ -16,20 +14,10 @@ import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 @NoArgsConstructor
 @SuperBuilder
 public class FocusUnit extends AbstractEntity {
-
     private String userId;
-
-    // linkedResources
     private LinkedResource linkedResource;
-
-    // workingTime
-
     private WorkingTime workingTime;
-
-    // breakTime
-
     private BreakTime breakTime;
 
-    // Assessment
-
+    private UserAssessment userAssessment;
 }
