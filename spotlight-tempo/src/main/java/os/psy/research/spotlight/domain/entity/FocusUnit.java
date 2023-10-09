@@ -18,6 +18,5 @@ public class FocusUnit extends AbstractEntity {
     private LinkedResource linkedResource;
     private WorkingTime workingTime;
     private BreakTime breakTime;
-
     private UserAssessment userAssessment;
 }
