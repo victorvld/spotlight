@@ -15,12 +15,10 @@ class FocusUnitMapperTest {
     @BeforeEach
     void setUp() {
         underTest = Mappers.getMapper(FocusUnitMapper.class);
-        var linkedResourceMapper = Mappers.getMapper(LinkedResourceMapper.class);
         var workingTimeMapper = Mappers.getMapper(WorkingTimeMapper.class);
         var breakTimeMapper = Mappers.getMapper(BreakTimeMapper.class);
         var userAssessmentMapper = Mappers.getMapper(UserAssessmentMapper.class);
         var interruptionMapper = Mappers.getMapper(InterruptionMapper.class);
-        ReflectionTestUtils.setField(underTest, "linkedResourceMapper", linkedResourceMapper);
         ReflectionTestUtils.setField(underTest, "workingTimeMapper", workingTimeMapper);
         ReflectionTestUtils.setField(underTest, "breakTimeMapper", breakTimeMapper);
         ReflectionTestUtils.setField(workingTimeMapper, "interruptionMapper", interruptionMapper);
@@ -35,24 +33,21 @@ class FocusUnitMapperTest {
 
         Assertions.assertEquals(entity.getUserId(), result.userId());
         Assertions.assertEquals(entity.getEntityId(), result.id());
-        Assertions.assertEquals(entity.getLinkedResource().getProjectId(), result.linkedResourceDto().projectId());
-        Assertions.assertEquals(entity.getLinkedResource().getTaskId(), result.linkedResourceDto().taskId());
+        Assertions.assertEquals(entity.getLinkedTaskId(), result.linkedTaskId());
 
         Assertions.assertTrue(entity.getWorkingTime().getStartedAt().isEqual(result.workingTimeDto().startedAt()));
         Assertions.assertTrue(entity.getWorkingTime().getCompletedAt().isEqual(result.workingTimeDto().completedAt()));
-        Assertions.assertEquals(entity.getWorkingTime().getSelectedDuration(), result.workingTimeDto().selectedDuration());
+        Assertions.assertEquals(entity.getWorkingTime().getPlannedMinutes(), result.workingTimeDto().plannedMinutes());
         Assertions.assertEquals(entity.getWorkingTime().getInterruptions().get(0).getType(), result.workingTimeDto().interruptionsDto().get(0).type());
-        Assertions.assertEquals(entity.getWorkingTime().getInterruptions().get(0).getReasonType(), result.workingTimeDto().interruptionsDto().get(0).reasonType());
+        Assertions.assertEquals(entity.getWorkingTime().getInterruptions().get(0).getReason(), result.workingTimeDto().interruptionsDto().get(0).reason());
         Assertions.assertEquals(entity.getWorkingTime().getInterruptions().get(0).getRecordedAt(), result.workingTimeDto().interruptionsDto().get(0).recordedAt());
-        Assertions.assertEquals(entity.getWorkingTime().getInterruptions().get(0).getDuration(), result.workingTimeDto().interruptionsDto().get(0).duration());
 
         Assertions.assertTrue(entity.getBreakTime().getStartedAt().isEqual(result.breakTimeDto().startedAt()));
         Assertions.assertTrue(entity.getBreakTime().getCompletedAt().isEqual(result.breakTimeDto().completedAt()));
-        Assertions.assertEquals(entity.getBreakTime().getSelectedDuration(), result.breakTimeDto().selectedDuration());
+        Assertions.assertEquals(entity.getBreakTime().getPlannedMinutes(), result.breakTimeDto().plannedMinutes());
         Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getType(), result.breakTimeDto().interruptionsDto().get(0).type());
-        Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getReasonType(), result.breakTimeDto().interruptionsDto().get(0).reasonType());
+        Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getReason(), result.breakTimeDto().interruptionsDto().get(0).reason());
         Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getRecordedAt(), result.breakTimeDto().interruptionsDto().get(0).recordedAt());
-        Assertions.assertEquals(entity.getBreakTime().getInterruptions().get(0).getDuration(), result.breakTimeDto().interruptionsDto().get(0).duration());
 
         Assertions.assertEquals(entity.getUserAssessment().getMood(), result.userAssessmentDto().mood());
         Assertions.assertEquals(entity.getUserAssessment().getFeedback(), result.userAssessmentDto().feedback());
@@ -66,24 +61,21 @@ class FocusUnitMapperTest {
 
         Assertions.assertNull(result.getEntityId());
         Assertions.assertEquals(request.userId(), result.getUserId());
-        Assertions.assertEquals(request.linkedResourceDto().projectId(), result.getLinkedResource().getProjectId());
-        Assertions.assertEquals(request.linkedResourceDto().taskId(), result.getLinkedResource().getTaskId());
+        Assertions.assertEquals(request.linkedTaskId(), result.getLinkedTaskId());
 
         Assertions.assertTrue(request.workingTimeDto().startedAt().isEqual(result.getWorkingTime().getStartedAt()));
         Assertions.assertTrue(request.workingTimeDto().completedAt().isEqual(result.getWorkingTime().getCompletedAt()));
-        Assertions.assertEquals(request.workingTimeDto().selectedDuration(), result.getWorkingTime().getSelectedDuration());
+        Assertions.assertEquals(request.workingTimeDto().plannedMinutes(), result.getWorkingTime().getPlannedMinutes());
         Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).type(), result.getWorkingTime().getInterruptions().get(0).getType());
-        Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).reasonType(), result.getWorkingTime().getInterruptions().get(0).getReasonType());
+        Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).reason(), result.getWorkingTime().getInterruptions().get(0).getReason());
         Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).recordedAt(), result.getWorkingTime().getInterruptions().get(0).getRecordedAt());
-        Assertions.assertEquals(request.workingTimeDto().interruptionsDto().get(0).duration(), result.getWorkingTime().getInterruptions().get(0).getDuration());
 
         Assertions.assertTrue(request.breakTimeDto().startedAt().isEqual(result.getBreakTime().getStartedAt()));
         Assertions.assertTrue(request.breakTimeDto().completedAt().isEqual(result.getBreakTime().getCompletedAt()));
-        Assertions.assertEquals(request.breakTimeDto().selectedDuration(), result.getBreakTime().getSelectedDuration());
+        Assertions.assertEquals(request.breakTimeDto().plannedMinutes(), result.getBreakTime().getPlannedMinutes());
         Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).type(), result.getBreakTime().getInterruptions().get(0).getType());
-        Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).reasonType(), result.getBreakTime().getInterruptions().get(0).getReasonType());
+        Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).reason(), result.getBreakTime().getInterruptions().get(0).getReason());
         Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).recordedAt(), result.getBreakTime().getInterruptions().get(0).getRecordedAt());
-        Assertions.assertEquals(request.breakTimeDto().interruptionsDto().get(0).duration(), result.getBreakTime().getInterruptions().get(0).getDuration());
 
         Assertions.assertEquals(request.userAssessmentDto().mood(), result.getUserAssessment().getMood());
         Assertions.assertEquals(request.userAssessmentDto().feedback(), result.getUserAssessment().getFeedback());

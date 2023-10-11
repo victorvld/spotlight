@@ -1,20 +1,24 @@
 package os.psy.research.spotlight.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.time.Duration;
 import java.time.OffsetDateTime;
 
+@Entity
 @Getter
-@Builder
-@AllArgsConstructor
-public class Interruption {
-
-    private final String type;
-    private final String reasonType;
-    private final OffsetDateTime recordedAt;
-    private final Duration duration;
-
+@Setter
+@Table(name = "interruption")
+@NoArgsConstructor
+@SuperBuilder
+public class Interruption extends AbstractEntity {
+    private String type;
+    private String reason;
+    private OffsetDateTime recordedAt;
 }

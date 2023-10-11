@@ -1,17 +1,19 @@
 package os.psy.research.spotlight.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
+@Entity
 @Getter
 @Setter
-@Builder
+@Table(name = "user_assessment")
 @NoArgsConstructor
-@AllArgsConstructor
-public class UserAssessment {
+@SuperBuilder
+public class UserAssessment extends AbstractEntity {
     String mood;
     String feedback;
 }

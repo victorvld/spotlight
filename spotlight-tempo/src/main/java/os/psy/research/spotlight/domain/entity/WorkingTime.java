@@ -1,19 +1,30 @@
 package os.psy.research.spotlight.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+@Entity
 @Getter
-@Builder
-@AllArgsConstructor
-public class WorkingTime {
-    private final OffsetDateTime startedAt;
-    private final OffsetDateTime completedAt;
-    private final Duration selectedDuration;
-    private final List<Interruption> interruptions;
+@Setter
+@Table(name = "working_time")
+@NoArgsConstructor
+@SuperBuilder
+public class WorkingTime extends AbstractEntity {
+    private OffsetDateTime startedAt;
+    private OffsetDateTime completedAt;
+    private int plannedMinutes;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "working_time_id")
+    private List<Interruption> interruptions;
 }

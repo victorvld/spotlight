@@ -1,5 +1,6 @@
 package os.psy.research.spotlight.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +20,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class AbstractEntity implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "entity_id")
     private String entityId;
 
     @Override

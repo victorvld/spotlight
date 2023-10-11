@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class InMemoryFocusUnitRepository extends InMemoryGenericRepository<FocusUnit> implements FocusUnitRepository {
 
-    public List<FocusUnit> findByUserUuid(String userUuid) {
+    public List<FocusUnit> findByUserId(String userUuid) {
         List<FocusUnit> result = new ArrayList<>();
         for (FocusUnit unit : getEntities()) {
             if (unit.getUserId().equals(userUuid)) {

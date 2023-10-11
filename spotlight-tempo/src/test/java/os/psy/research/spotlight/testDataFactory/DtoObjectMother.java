@@ -2,7 +2,6 @@ package os.psy.research.spotlight.testDataFactory;
 
 import os.psy.research.spotlight.presentation.dto.BreakTimeDto;
 import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
-import os.psy.research.spotlight.presentation.dto.LinkedResourceDto;
 import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 
 import java.time.Duration;
@@ -15,19 +14,16 @@ public class DtoObjectMother {
             return FocusUnitDto.builder()
                     .userId("userId")
                     .id("id")
-                    .linkedResourceDto(LinkedResourceDto.builder()
-                            .projectId("projectId")
-                            .taskId("taskId")
-                            .build())
+                    .linkedTaskId("taskId")
                     .workingTimeDto(WorkingTimeDto.builder()
                             .startedAt(OffsetDateTime.MIN)
                             .completedAt(OffsetDateTime.MAX)
-                            .selectedDuration(Duration.ZERO)
+                            .plannedMinutes(25)
                             .build())
                     .breakTimeDto(BreakTimeDto.builder()
                             .startedAt(OffsetDateTime.MIN)
                             .completedAt(OffsetDateTime.MAX)
-                            .selectedDuration(Duration.ZERO)
+                            .plannedMinutes(25)
                             .build());
         }
 
