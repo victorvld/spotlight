@@ -16,9 +16,9 @@ public class FocusUnitService {
         this.repository = repository;
     }
 
-    public List<FocusUnit> getFocusUnits(String userUuid) {
-        log.info("Retrieving all units for user: {}", userUuid);
-        return repository.findByUserUuid(userUuid);
+    public List<FocusUnit> getFocusUnits(String userId) {
+        log.info("Retrieving all units for user: {}", userId);
+        return repository.findByUserId(userId);
     }
 
     public FocusUnit registerFocusUnit(FocusUnit unit) {

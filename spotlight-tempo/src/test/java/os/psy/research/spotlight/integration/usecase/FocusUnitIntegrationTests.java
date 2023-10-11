@@ -40,11 +40,10 @@ public class FocusUnitIntegrationTests {
             var units = service.getFocusUnits("userId");
 
             Assertions.assertEquals(2, units.size());
-            Assertions.assertEquals("projectId", units.get(0).getLinkedResource().getProjectId());
-            Assertions.assertEquals("taskId", units.get(0).getLinkedResource().getTaskId());
+            Assertions.assertEquals("linkedTaskId", units.get(0).getLinkedTaskId());
             Assertions.assertEquals(OffsetDateTime.MIN, units.get(0).getWorkingTime().getStartedAt());
             Assertions.assertEquals(OffsetDateTime.MAX, units.get(0).getWorkingTime().getCompletedAt());
-            Assertions.assertEquals(Duration.ZERO, units.get(0).getWorkingTime().getSelectedDuration());
+            Assertions.assertEquals(25, units.get(0).getWorkingTime().getPlannedMinutes());
         }
 
     }

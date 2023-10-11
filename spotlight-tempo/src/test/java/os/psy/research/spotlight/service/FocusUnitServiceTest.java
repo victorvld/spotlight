@@ -24,11 +24,11 @@ public class FocusUnitServiceTest {
     @Test
     void getFocusUnitsTest() {
         var userId = "user";
-        when(repository.findByUserUuid(userId)).thenReturn(null);
+        when(repository.findByUserId(userId)).thenReturn(null);
 
         service.getFocusUnits(userId);
 
-        verify(repository, times(1)).findByUserUuid(userId);
+        verify(repository, times(1)).findByUserId(userId);
     }
 
     @Test
