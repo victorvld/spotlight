@@ -19,7 +19,6 @@ import os.psy.research.spotlight.domain.entity.FocusUnit;
 import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.presentation.controller.FocusUnitController;
 import os.psy.research.spotlight.presentation.dto.BreakTimeDto;
-import os.psy.research.spotlight.presentation.dto.FocusUnitDto;
 import os.psy.research.spotlight.presentation.dto.WorkingTimeDto;
 import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
 import os.psy.research.spotlight.presentation.dto.request.RegisterFocusUnitRequest;
@@ -74,21 +73,16 @@ public class FocusUnitControllerTest {
             Assertions.assertEquals(userId, captor.getValue());
         }
 
-        @Test
-        void whenBlankUuid_thenReturns400() throws Exception {
-            var userId = "";
-            var request = GetFocusUnitsRequest.builder().userId(userId).build();
-
-            mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
-                            .contentType(MediaType.APPLICATION_JSON_VALUE)
-                            .content(mapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
+        static Stream<Arguments> badRequestProvider() {
+            return Stream.of(
+                    Arguments.of(GetFocusUnitsRequest.builder().userId(" ").build()),
+                    Arguments.of(GetFocusUnitsRequest.builder().build())
+            );
         }
 
-        @Test
-        void whenNullUuid_thenReturns400() throws Exception {
-            var request = GetFocusUnitsRequest.builder().build();
-
+        @ParameterizedTest
+        @MethodSource("badRequestProvider")
+        void whenIncomingRequestFieldsDoNotPassValidationRulesBadRequestIsReturned(GetFocusUnitsRequest request) throws Exception {
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .content(mapper.writeValueAsString(request)))
@@ -156,21 +150,22 @@ public class FocusUnitControllerTest {
             Assertions.assertEquals(request.userAssessmentDto().feedback(), captor.getValue().getUserAssessment().getFeedback());
         }
 
+        static Stream<Arguments> badRequestProvider() {
+            return Stream.of(
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(" ").build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedTaskId(" ").build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedTaskId(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(WorkingTimeDto.builder().build()).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(null).build()),
+                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(BreakTimeDto.builder().build()).build())
+            );
+        }
 
         @ParameterizedTest
         @MethodSource("badRequestProvider")
-        void whenBlankUuid_thenReturns400(RegisterFocusUnitRequest request) throws Exception {
-
-            mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON_VALUE)
-                            .contentType(MediaType.APPLICATION_JSON_VALUE)
-                            .content(mapper.writeValueAsString(request)))
-                    .andExpect(status().isBadRequest());
-        }
-
-        @Test
-        void whenNullUuid_thenReturns400() throws Exception {
-            var request = FocusUnitDto.builder().build();
-
+        void whenIncomingRequestFieldsDoNotPassValidationRulesBadRequestIsReturned(RegisterFocusUnitRequest request) throws Exception {
             mockMvc.perform(post(url).accept(MediaType.APPLICATION_JSON_VALUE)
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .content(mapper.writeValueAsString(request)))
@@ -196,18 +191,6 @@ public class FocusUnitControllerTest {
             mockMvc.perform(post(url).accept(MediaType.APPLICATION_ATOM_XML)
                             .contentType(MediaType.APPLICATION_JSON_VALUE))
                     .andExpect(status().isNotAcceptable());
-        }
-
-        static Stream<Arguments> badRequestProvider() {
-            return Stream.of(
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().userId(" ").build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(null).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedTaskId(null).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(null).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().workingTimeDto(WorkingTimeDto.builder().build()).build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().linkedTaskId(" ").build()),
-                    Arguments.of(RequestObjectMother.RegisterFocusUnit.complete().breakTimeDto(BreakTimeDto.builder().build()).build())
-            );
         }
 
     }

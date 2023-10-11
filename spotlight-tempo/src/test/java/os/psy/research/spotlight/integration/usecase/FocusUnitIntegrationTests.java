@@ -11,7 +11,6 @@ import os.psy.research.spotlight.domain.service.FocusUnitService;
 import os.psy.research.spotlight.infrastructure.persistence.doubles.InMemoryFocusUnitRepository;
 import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 
-import java.time.Duration;
 import java.time.OffsetDateTime;
 
 public class FocusUnitIntegrationTests {
@@ -47,5 +46,9 @@ public class FocusUnitIntegrationTests {
         }
 
     }
+
+    // TODO: 11/10/2023 Write integration tests for RegisterFocusUnit use case.
+    //  When FU has been already registered could not be registered again.
+    //  When FU Has not been registered so far it could be registered.
 
 }
