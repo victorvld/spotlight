@@ -18,8 +18,8 @@
     <description>Time Analysis Application</description>
 
     <modules>
-        <module>spotlight-tempo-flyway</module>
-        <module>spotlight-tempo</module>
+        <module>spotlight-time-flyway</module>
+        <module>spotlight-time</module>
     </modules>
 
     <properties>
