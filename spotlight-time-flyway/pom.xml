@@ -8,7 +8,7 @@
         <artifactId>spotlight</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>spotlight-tempo-flyway</artifactId>
+    <artifactId>spotlight-time-flyway</artifactId>
 
     <dependencies>
         <dependency>

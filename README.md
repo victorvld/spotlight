@@ -1,8 +1,19 @@
 # Spotlight
 
+[![Code Coverage](https://img.shields.io/badge/Code%20Coverage-85%25-brightgreen)](URL_TO_YOUR_COVERAGE_REPORT)
+
 Spotlight is a project designed to help you enhance your productivity by tracking your focus units and linking them to specific tasks or resources. A focus unit (FU) represents the time you spend working on a task and the accompanying break time.
 
 By diligently recording and analyzing your focus units, you can gain a deeper understanding of your work habits and identify areas for improvement. This self-reflective aspect of Spotlight empowers you to make informed decisions about how to optimize your productivity and achieve your goals.
+
+- [Getting Started](#getting-started)
+    - [Clone the Repository](#clone-the-repository)
+    - [Run the Application](#run-the-application)
+- [Usage](#usage)
+    - [Time API](#time-api)
+    - [Link API](#link-api)
+- [Contributing](#contributors)
+- [License](#license)
 
 ## Getting Started
 
