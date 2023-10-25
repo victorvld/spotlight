@@ -28,7 +28,25 @@
 			"response": []
 		},
 		{
-			"name": "Register Focus Unit",
+			"name": "Register Focus Unit For User1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"userId\": \"user_3\",\r\n        \"linkedTaskId\": \"LIG-16\",\r\n        \"workingTimeDto\": {\r\n            \"startedAt\": \"2023-10-10T14:25:00+02:00\",\r\n            \"completedAt\": \"2023-10-10T14:40:00+02:00\",\r\n            \"plannedMinutes\": 15,\r\n            \"interruptionsDto\": [\r\n                {\r\n                    \"type\": \"System\",\r\n                    \"reason\": \"Off-Grid\",\r\n                    \"recordedAt\": \"2023-10-10T12:30:00+02:00\"\r\n                }\r\n            ]\r\n        },\r\n        \"breakTimeDto\": {\r\n            \"startedAt\": \"2023-10-10T14:40:00+02:00\",\r\n            \"completedAt\": \"2023-10-10T14:55:00+02:00\",\r\n            \"plannedMinutes\": 15,\r\n            \"interruptionsDto\": []\r\n        },\r\n        \"userAssessmentDto\": {\r\n            \"mood\": \"Good\",\r\n            \"feedback\": \"System Failure\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/rest/os.psy.research.spotlight.v1.FocusUnitApi/unit"
+			},
+			"response": []
+		},
+		{
+			"name": "Register Focus Unit For User2",
 			"request": {
 				"method": "POST",
 				"header": [],

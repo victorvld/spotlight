@@ -19,6 +19,8 @@ WORKDIR /app
 
 COPY --from=builder /app/spotlight-time/target/spotlight-time-1.0.0-SNAPSHOT.jar .
 
-EXPOSE 8001
+ARG PORT_APP=9000
+ENV PORT $PORT_APP
+EXPOSE $PORT
 
 CMD ["java", "-jar", "spotlight-time-1.0.0-SNAPSHOT.jar"]
