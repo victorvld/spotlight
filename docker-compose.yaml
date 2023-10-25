@@ -26,7 +26,6 @@ services:
       - spotlight
     depends_on:
       - postgres14
-    restart: always
 
   spotlight-time:
     container_name: spotlight-time

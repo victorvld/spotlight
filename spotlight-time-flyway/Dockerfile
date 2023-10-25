@@ -11,7 +11,7 @@ RUN ./mvnw dependency:go-offline
 
 COPY ./spotlight-time-flyway/src ./src
 
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw package spring-boot:repackage -DskipTests
 
 FROM openjdk:17-jdk-alpine
 

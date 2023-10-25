@@ -2,13 +2,13 @@ spring:
   application:
     name: spotlight-time-flyway
   datasource:
-    url: jdbc:postgresql://${DB_HOST}/${DB_DATABASE}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST:localhost:5432}/${DB_DATABASE:spotlight_time}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:codex}
   flyway:
-    url: jdbc:postgresql://${DB_HOST}/${DB_DATABASE}
-    user: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST:localhost:5432}/${DB_DATABASE:spotlight_time}
+    user: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:codex}
     baseline-on-migrate: true
     sql-migration-prefix: V
     repeatable-sql-migration-prefix: R
