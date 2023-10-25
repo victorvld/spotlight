@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  postgres14:
+    container_name: postgres14
+    image: postgres:14-alpine
+    ports:
+      - "5532:5432"
+    environment:
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: spotlight_time
+    volumes:
+      - data-postgres:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - spotlight
+
+  spotlight-time-flyway:
+    container_name: spotlight-time-flyway
+    image: victorvld/spotlight-time-flyway:latest
+    environment:
+      DB_HOST: postgres14:5432
+      DB_DATABASE: spotlight_time
+      DB_USERNAME: postgres
+      DB_PASSWORD: qwerty
+    networks:
+      - spotlight
+    depends_on:
+      - postgres14
+
+  spotlight-time:
+    container_name: spotlight-time
+    image: victorvld/spotlight-time:latest
+    ports:
+      - "9000:9000"
+    environment:
+      PORT: 9000
+      DB_HOST: postgres14:5432
+      DB_DATABASE: spotlight_time
+      DB_USERNAME: postgres
+      DB_PASSWORD: qwerty
+    networks:
+      - spotlight
+    depends_on:
+      - postgres14
+    restart: always
+volumes:
+  data-postgres:
+    name: data-postgres
+
+networks:
+  spotlight:
+    name: spotlight
