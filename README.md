@@ -7,6 +7,7 @@ Spotlight is a project designed to help you enhance your productivity by trackin
 By diligently recording and analyzing your focus units, you can gain a deeper understanding of your work habits and identify areas for improvement. This self-reflective aspect of Spotlight empowers you to make informed decisions about how to optimize your productivity and achieve your goals.
 
 - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
     - [Clone the Repository](#clone-the-repository)
     - [Run the Application](#run-the-application)
 - [Usage](#usage)
@@ -16,6 +17,11 @@ By diligently recording and analyzing your focus units, you can gain a deeper un
 - [License](#license)
 
 ## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine. We use Docker Compose to make the application portable to any operating system.
+
 
 ### Clone the Repository
 
@@ -47,6 +53,9 @@ The Time API allows you to record focus units (FUs) and retrieve information abo
 
 - **Get Focus Units**: Retrieve a list of your recorded focus units, including details such as task name, start time, end time, and break duration.
 
+To make interacting with the API even more convenient, we've provided [Postman collections](spotlight-time/postman/collections/spotlight.postman_collection.json) 
+that you can use to streamline your testing and development processes.
+These collections include pre-configured API requests, making it easier for you to get started.
 ### Link API
 
 The Link API provides functionality for linking focus units to specific resources or tasks. Use cases for this API include:

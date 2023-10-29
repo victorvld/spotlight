@@ -20,6 +20,9 @@
     <modules>
         <module>spotlight-time-flyway</module>
         <module>spotlight-time</module>
+<!--        <module>spotlight-link</module>-->
+        <module>spotlight-core</module>
+<!--        <module>spotlight-link-flyway</module>-->
     </modules>
 
     <properties>

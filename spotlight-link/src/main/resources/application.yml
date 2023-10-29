@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spotlight-link
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost:5432}/${DB_DATABASE:spotlight_link}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:codex}
+  jpa:
+    generate-ddl: true
+server:
+  port: ${PORT:9001}

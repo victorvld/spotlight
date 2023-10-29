@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FlywayApp {
+public class TimeFlyway {
 
     public static void main(String[] args) {
-        SpringApplication.run(FlywayApp.class, args);
+        SpringApplication.run(TimeFlyway.class, args);
     }
 }
