@@ -1,5 +1,6 @@
 package os.psy.research.spotlight.domain.repository;
 
+import os.psy.research.spotlight.core.repository.GenericRepository;
 import os.psy.research.spotlight.domain.entity.FocusUnit;
 
 import java.util.List;

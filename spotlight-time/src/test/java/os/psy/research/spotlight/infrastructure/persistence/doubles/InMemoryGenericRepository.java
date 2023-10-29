@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
-import os.psy.research.spotlight.domain.entity.AbstractEntity;
-import os.psy.research.spotlight.domain.repository.GenericRepository;
+import os.psy.research.spotlight.core.entity.AbstractEntity;
+import os.psy.research.spotlight.core.repository.GenericRepository;
 
 import java.util.ArrayList;
 

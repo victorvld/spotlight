@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.domain.entity;
+package os.psy.research.spotlight.core.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
