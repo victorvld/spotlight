@@ -18,6 +18,6 @@ import os.psy.research.spotlight.core.entity.AbstractEntity;
 public class Account extends AbstractEntity {
     private String type;
     private String username;
-    private String url;
+    private String webDomain;
     private String token;
 }

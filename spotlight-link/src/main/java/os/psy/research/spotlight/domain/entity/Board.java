@@ -1,18 +1,27 @@
 package os.psy.research.spotlight.domain.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-import os.psy.research.spotlight.core.entity.AbstractEntity;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = "account")
+@Table(name = "board")
 @NoArgsConstructor
-@SuperBuilder
-public class Board extends AbstractEntity {
+@AllArgsConstructor
+@Builder
+public class Board {
+    @Id
+    private String boardId;
+    private String boardName;
+    private String locationAvatarUri;
+    private String locationProjectName;
+    private String locationProjectKey;
 }
