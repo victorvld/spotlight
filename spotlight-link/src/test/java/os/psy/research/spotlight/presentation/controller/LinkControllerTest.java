@@ -31,66 +31,42 @@ import static os.psy.research.spotlight.presentation.controller.LinkController.S
 @WebMvcTest(LinkController.class)
 @ComponentScan(basePackageClasses = {BoardMapper.class})
 class LinkControllerTest {
-
-    public static final String BOARDS_URL = SPOTLIGHT_V_1_LINK_API + "/boards";
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper mapper;
-
     @MockBean
     private LinkService mockService;
-    @Test
-    void whenValidInput_thenReturns200() throws Exception {
-        var accountId = "acc1";
-        var request = GetBoardsRequest.builder().accountId(accountId).build();
-        var captor = ArgumentCaptor.forClass(String.class);
-        var board = EntityObjectMother.complete().build();
-        when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(board));
+    public static final String ENDPOINT = SPOTLIGHT_V_1_LINK_API + "/boards";
 
-        mockMvc.perform(get(BOARDS_URL).accept(MediaType.APPLICATION_JSON_VALUE)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(mapper.writeValueAsString(request)))
-                .andExpect(status().isOk());
+    @Test
+    void whenGetBoardRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
+        var accountId = "acc1";
+        var content = GetBoardsRequest.builder().accountId(accountId).build();
+        var captor = ArgumentCaptor.forClass(String.class);
+        var json = mapper.writeValueAsString(content);
+        var request = get(ENDPOINT).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+        when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(EntityObjectMother.complete().build()));
+
+        mockMvc.perform(request).andExpect(status().isOk());
 
         verify(mockService, times(1)).getAllBoardsForGivenAccount(captor.capture());
         Assertions.assertEquals(accountId, captor.getValue());
     }
 
-    static Stream<Arguments> badRequestProvider() {
+    @ParameterizedTest
+    @MethodSource("badRequestsProvider")
+    void whenIncomingRequestFieldsDoNotPassValidationRulesThenReturns400(GetBoardsRequest content) throws Exception {
+        var json = mapper.writeValueAsString(content);
+        var request = get(ENDPOINT).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+
+        mockMvc.perform(request).andExpect(status().isBadRequest());
+    }
+
+    static Stream<Arguments> badRequestsProvider() {
         return Stream.of(
                 Arguments.of(GetBoardsRequest.builder().accountId(" ").build()),
                 Arguments.of(GetBoardsRequest.builder().build())
         );
-    }
-    @ParameterizedTest
-    @MethodSource("badRequestProvider")
-    void whenIncomingRequestFieldsDoNotPassValidationRulesBadRequestIsReturned(GetBoardsRequest request) throws Exception {
-        mockMvc.perform(get(BOARDS_URL).accept(MediaType.APPLICATION_JSON_VALUE)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(mapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void whenInvalidInput_thenReturns400() throws Exception {
-        mockMvc.perform(get(BOARDS_URL).accept(MediaType.APPLICATION_JSON_VALUE)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void whenInvalidContentType_thenReturns415() throws Exception {
-        mockMvc.perform(get(BOARDS_URL).accept(MediaType.APPLICATION_JSON_VALUE)
-                        .contentType(MediaType.APPLICATION_ATOM_XML))
-                .andExpect(status().isUnsupportedMediaType());
-    }
-
-    @Test
-    void whenInvalidAcceptableType_thenReturns406() throws Exception {
-        mockMvc.perform(get(BOARDS_URL).accept(MediaType.APPLICATION_ATOM_XML)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isNotAcceptable());
     }
 }

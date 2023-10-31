@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import os.psy.research.spotlight.domain.entity.Board;
 import os.psy.research.spotlight.domain.service.LinkService;
 import os.psy.research.spotlight.presentation.Mapper.BoardMapper;
 import os.psy.research.spotlight.presentation.dto.BoardDto;
