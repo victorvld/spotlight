@@ -5,8 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import os.psy.research.spotlight.domain.entity.Board;
 import os.psy.research.spotlight.domain.repository.AccountRepository;
-import os.psy.research.spotlight.presentation.Mapper.BoardMapper;
-import os.psy.research.spotlight.presentation.dto.BoardDto;
 
 import java.util.List;
 
