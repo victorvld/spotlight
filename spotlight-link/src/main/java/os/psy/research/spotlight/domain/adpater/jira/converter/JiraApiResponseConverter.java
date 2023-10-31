@@ -10,21 +10,21 @@ public class JiraApiResponseConverter {
     private JiraApiResponseConverter() {
     }
 
-    public static List<Board> convertToBoard(GetAllBoardsResponse response) {
+    public static List<Board> convertToBoards(GetAllBoardsResponse response) {
         if (response == null || response.getValues() == null)
             return Collections.emptyList();
         return response.getValues().stream()
-                .map(JiraApiResponseConverter::convertToBoard)
+                .map(JiraApiResponseConverter::convertToBoards)
                 .toList();
     }
 
-    private static Board convertToBoard(GetAllBoardsResponse.Board response) {
+    private static Board convertToBoards(GetAllBoardsResponse.Board response) {
         return Board.builder()
                 .boardId(String.valueOf(response.getId()))
                 .boardName(response.getName())
-                .locationAvatarUri(response.getLocation() != null ? response.getLocation().getAvatarURI() : null)
-                .locationProjectName(response.getLocation() != null ? response.getLocation().getProjectName() : null)
-                .locationProjectKey(response.getLocation() != null ? response.getLocation().getProjectKey() : null)
+                .avatarUri(response.getLocation() != null ? response.getLocation().getAvatarURI() : null)
+                .projectName(response.getLocation() != null ? response.getLocation().getProjectName() : null)
+                .projectKey(response.getLocation() != null ? response.getLocation().getProjectKey() : null)
                 .build();
     }
 }
