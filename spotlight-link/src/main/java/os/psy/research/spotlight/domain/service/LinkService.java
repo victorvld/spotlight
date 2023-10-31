@@ -3,6 +3,7 @@ package os.psy.research.spotlight.domain.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import os.psy.research.spotlight.domain.entity.Board;
 import os.psy.research.spotlight.domain.repository.AccountRepository;
 import os.psy.research.spotlight.presentation.Mapper.BoardMapper;
 import os.psy.research.spotlight.presentation.dto.BoardDto;
@@ -18,10 +19,8 @@ public class LinkService {
 
     private final AccountRepository repository;
 
-    private final BoardMapper mapper;
-
-    public List<BoardDto> getAllBoardsForGivenAccount(String accountId) {
+    public List<Board> getAllBoardsForGivenAccount(String accountId) {
         var account = repository.findByEntityId(accountId);
-        return mapper.toDto(this.pmFactory.get(account.getType()).getAllBoards(account));
+        return this.pmFactory.get(account.getType()).getAllBoards(account);
     }
 }

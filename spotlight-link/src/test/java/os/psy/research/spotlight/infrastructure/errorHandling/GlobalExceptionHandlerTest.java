@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.infrastructure.aspect.errorHandling;
+package os.psy.research.spotlight.infrastructure.errorHandling;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import os.psy.research.spotlight.presentation.dto.request.GetFocusUnitsRequest;
-
+import os.psy.research.spotlight.presentation.dto.GetBoardsRequest;
 
 @ExtendWith(MockitoExtension.class)
 class GlobalExceptionHandlerTest {
@@ -19,7 +18,7 @@ class GlobalExceptionHandlerTest {
     private GlobalExceptionHandler exceptionHandler;
     @Test
     void handleValidationErrors() {
-        var bindingResults = new DataBinder(new GetFocusUnitsRequest("userId")).getBindingResult();
+        var bindingResults = new DataBinder(new GetBoardsRequest("acc1")).getBindingResult();
 
         var exception = new MethodArgumentNotValidException((MethodParameter) null, bindingResults);
 

@@ -49,7 +49,7 @@ public class FocusUnitControllerTest {
     private ObjectMapper mapper;
 
     @MockBean
-    private FocusUnitService underTest;
+    private FocusUnitService mockService;
 
     @Nested
     @DisplayName("Test cases for getFocusUnits endpoint")
@@ -62,14 +62,14 @@ public class FocusUnitControllerTest {
             var request = GetFocusUnitsRequest.builder().userId(userId).build();
             var captor = ArgumentCaptor.forClass(String.class);
             var unit = EntityObjectMother.complete().build();
-            when(underTest.getFocusUnits(userId)).thenReturn(Collections.singletonList(unit));
+            when(mockService.getFocusUnits(userId)).thenReturn(Collections.singletonList(unit));
 
             mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON_VALUE)
-                            .contentType(MediaType.APPLICATION_JSON_VALUE)
+                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .content(mapper.writeValueAsString(request)))
                     .andExpect(status().isOk());
 
-            verify(underTest, times(1)).getFocusUnits(captor.capture());
+            verify(mockService, times(1)).getFocusUnits(captor.capture());
             Assertions.assertEquals(userId, captor.getValue());
         }
 
@@ -127,7 +127,7 @@ public class FocusUnitControllerTest {
                             .content(mapper.writeValueAsString(request)))
                     .andExpect(status().isOk());
 
-            verify(underTest, times(1)).registerFocusUnit(captor.capture());
+            verify(mockService, times(1)).registerFocusUnit(captor.capture());
             Assertions.assertNull(captor.getValue().getEntityId());
             Assertions.assertEquals(request.userId(), captor.getValue().getUserId());
             Assertions.assertEquals(request.linkedTaskId(), captor.getValue().getLinkedTaskId());

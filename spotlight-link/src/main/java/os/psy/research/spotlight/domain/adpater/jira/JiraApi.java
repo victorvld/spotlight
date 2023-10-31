@@ -25,6 +25,6 @@ public class JiraApi implements PmAdapter {
         var url = String.format(JiraApiConstants.getAllBoardsUrl(), account.getWebDomain());
         var response = Unirest.get(url).header("Accept", MediaType.APPLICATION_JSON_VALUE).basicAuth(account.getUsername(), account.getToken()).asJson();
         var getAllBoardsResponse = objectMapper.readValue(response.getBody().toString(), GetAllBoardsResponse.class);
-        return JiraApiResponseConverter.convertToBoard(getAllBoardsResponse);
+        return JiraApiResponseConverter.convertToBoards(getAllBoardsResponse);
     }
 }

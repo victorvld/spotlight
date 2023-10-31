@@ -21,7 +21,7 @@ public class Board {
     @Id
     private String boardId;
     private String boardName;
-    private String locationAvatarUri;
-    private String locationProjectName;
-    private String locationProjectKey;
+    private String avatarUri;
+    private String projectName;
+    private String projectKey;
 }
