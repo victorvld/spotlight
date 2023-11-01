@@ -1,6 +1,6 @@
-package os.psy.research.spotlight.domain.adpater.monday.converter;
+package os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.converter;
 
-import os.psy.research.spotlight.domain.adpater.monday.mapper.GetAllBoardsMondayApiResponse;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.GetAllBoardsMondayApiResponse;
 import os.psy.research.spotlight.domain.entity.Board;
 
 import java.util.Collections;

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import os.psy.research.spotlight.domain.adpater.jira.JiraApi;
-import os.psy.research.spotlight.domain.adpater.monday.MondayApi;
+import os.psy.research.spotlight.domain.adpater.jira.software.cloud.rest.api.JiraSoftwareCloudAdapterImpl;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.MondayGraphQlAdapterImpl;
 import os.psy.research.spotlight.infrastructure.errorHandling.exceptions.UnknownPmVendor;
 
 import java.util.stream.Stream;
@@ -23,8 +23,8 @@ class PmFactoryImplTest {
 
     static Stream<Arguments> typeProvider() {
         return Stream.of(
-                Arguments.of(MondayApi.class, "monday"),
-                Arguments.of(JiraApi.class, "jira")
+                Arguments.of(MondayGraphQlAdapterImpl.class, "monday"),
+                Arguments.of(JiraSoftwareCloudAdapterImpl.class, "jira")
         );
     }
 
