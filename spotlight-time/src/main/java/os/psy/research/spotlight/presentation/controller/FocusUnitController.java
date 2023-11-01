@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/rest/os.psy.research.spotlight.v1.FocusUnitApi")
+@RequestMapping(path = "${spotlight.api.fu.path}")
 public class FocusUnitController {
 
     private final FocusUnitService service;

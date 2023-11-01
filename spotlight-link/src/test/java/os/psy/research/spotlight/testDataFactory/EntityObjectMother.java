@@ -7,9 +7,6 @@ public class EntityObjectMother {
     public static Board.BoardBuilder complete() {
         return Board.builder()
                 .boardId("boardId")
-                .boardName("boardName")
-                .avatarUri("avatarUri")
-                .projectKey("projectKey")
-                .projectName("projectName");
+                .boardName("boardName");
     }
 }

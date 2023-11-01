@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
@@ -51,10 +52,13 @@ public class FocusUnitControllerTest {
     @MockBean
     private FocusUnitService mockService;
 
+    @Value("${spotlight.api.fu.path}")
+    private String underTestEndpoint;
+
     @Nested
     @DisplayName("Test cases for getFocusUnits endpoint")
     class GetFocusUnitsTestCases {
-        public final String url = "/rest/os.psy.research.spotlight.v1.FocusUnitApi/units";
+        public final String url = String.format("%s/units", underTestEndpoint);
 
         @Test
         void whenGetBoardRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
@@ -92,7 +96,7 @@ public class FocusUnitControllerTest {
     @DisplayName("Test cases for registerFocusUnit endpoint")
     class RegisterFocusUnitTestCases {
 
-        public final String url = "/rest/os.psy.research.spotlight.v1.FocusUnitApi/unit";
+        public final String url = String.format("%s/unit", underTestEndpoint);
 
         @Test
         void whenValidInput_thenReturns200() throws Exception {

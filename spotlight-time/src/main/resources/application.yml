@@ -9,3 +9,7 @@ spring:
     generate-ddl: true
 server:
   port: ${PORT:9000}
+spotlight:
+  api:
+    fu:
+      path: ${API_PATH:/rest/os.psy.research.spotlight.v1.FocusUnitApi}

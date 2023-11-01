@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.domain.adpater.monday;
+package os.psy.research.spotlight.domain.adpater.monday.graph.ql.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -10,8 +10,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.http.MediaType;
-import os.psy.research.spotlight.domain.adpater.monday.converter.MondayResponseConverter;
-import os.psy.research.spotlight.domain.adpater.monday.mapper.GetAllBoardsMondayApiResponse;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.converter.MondayResponseConverter;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.GetAllBoardsMondayApiResponse;
 import os.psy.research.spotlight.domain.entity.Account;
 import os.psy.research.spotlight.domain.entity.Board;
 import os.psy.research.spotlight.domain.service.PmAdapter;
@@ -19,7 +19,7 @@ import os.psy.research.spotlight.domain.service.PmAdapter;
 import java.util.List;
 
 @Slf4j
-public class MondayApi implements PmAdapter {
+public class MondayGraphQlAdapterImpl implements PmAdapter {
     public static final String API_MONDAY_V2 = "https://api.monday.com/v2/";
     public static final String QUERY_GET_ALL_BOARDS_NAME_ID = "{\"query\":\"query{boards(){name id}}\"}";
 

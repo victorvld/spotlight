@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.domain.adpater.monday.mapper;
+package os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

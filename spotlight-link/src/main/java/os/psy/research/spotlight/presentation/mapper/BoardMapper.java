@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.presentation.Mapper;
+package os.psy.research.spotlight.presentation.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;

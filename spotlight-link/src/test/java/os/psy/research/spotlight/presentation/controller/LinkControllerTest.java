@@ -8,13 +8,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import os.psy.research.spotlight.domain.service.LinkService;
-import os.psy.research.spotlight.presentation.Mapper.BoardMapper;
+import os.psy.research.spotlight.presentation.mapper.BoardMapper;
 import os.psy.research.spotlight.presentation.dto.GetBoardsRequest;
 import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
 
@@ -26,7 +27,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static os.psy.research.spotlight.presentation.controller.LinkController.SPOTLIGHT_V_1_LINK_API;
 
 @WebMvcTest(LinkController.class)
 @ComponentScan(basePackageClasses = {BoardMapper.class})
@@ -37,7 +37,9 @@ class LinkControllerTest {
     private ObjectMapper mapper;
     @MockBean
     private LinkService mockService;
-    public static final String ENDPOINT = SPOTLIGHT_V_1_LINK_API + "/boards";
+
+    @Value("${spotlight.api.link.path}/boards")
+    private String underTestEndpoint;
 
     @Test
     void whenGetBoardRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
@@ -45,7 +47,7 @@ class LinkControllerTest {
         var content = GetBoardsRequest.builder().accountId(accountId).build();
         var captor = ArgumentCaptor.forClass(String.class);
         var json = mapper.writeValueAsString(content);
-        var request = get(ENDPOINT).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+        var request = get(underTestEndpoint).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
         when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(EntityObjectMother.complete().build()));
 
         mockMvc.perform(request).andExpect(status().isOk());
@@ -58,7 +60,7 @@ class LinkControllerTest {
     @MethodSource("badRequestsProvider")
     void whenIncomingRequestFieldsDoNotPassValidationRulesThenReturns400(GetBoardsRequest content) throws Exception {
         var json = mapper.writeValueAsString(content);
-        var request = get(ENDPOINT).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+        var request = get(underTestEndpoint).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
 
         mockMvc.perform(request).andExpect(status().isBadRequest());
     }
