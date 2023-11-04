@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import os.psy.research.spotlight.domain.service.LinkService;
 import os.psy.research.spotlight.presentation.mapper.BoardMapper;
 import os.psy.research.spotlight.presentation.dto.GetBoardsRequest;
-import os.psy.research.spotlight.testDataFactory.EntityObjectMother;
+import os.psy.research.spotlight.testDataFactory.EntityOm;
 
 import java.util.Collections;
 import java.util.stream.Stream;
@@ -48,7 +48,7 @@ class LinkControllerTest {
         var captor = ArgumentCaptor.forClass(String.class);
         var json = mapper.writeValueAsString(content);
         var request = get(underTestEndpoint).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
-        when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(EntityObjectMother.complete().build()));
+        when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(EntityOm.complete().build()));
 
         mockMvc.perform(request).andExpect(status().isOk());
 

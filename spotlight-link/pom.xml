@@ -61,11 +61,6 @@
             <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mashape.unirest</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>1.4.9</version>
-        </dependency>
-        <dependency>
             <groupId>os.psy.research.spotlight.common</groupId>
             <artifactId>spotlight-core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
@@ -77,9 +72,9 @@
             <version>15.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
@@ -137,7 +132,10 @@
                             <sourceType>jsonschema</sourceType>
                             <annotationStyle>jackson2</annotationStyle>
                             <generateBuilders>true</generateBuilders>
+                            <!--                        Generate builders in the generated classes-->
+                            <useInnerClassBuilders>true</useInnerClassBuilders>
                             <initializeCollections>true</initializeCollections>
+                            <!--                        Use the name on the title param to set the generated classes names-->
                             <useTitleAsClassname>true</useTitleAsClassname>
                         </configuration>
                     </execution>
@@ -145,5 +143,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

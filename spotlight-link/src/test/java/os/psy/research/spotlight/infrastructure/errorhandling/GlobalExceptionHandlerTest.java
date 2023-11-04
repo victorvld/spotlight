@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.infrastructure.errorHandling;
+package os.psy.research.spotlight.infrastructure.errorhandling;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

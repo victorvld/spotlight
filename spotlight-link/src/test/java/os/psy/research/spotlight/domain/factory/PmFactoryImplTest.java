@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import os.psy.research.spotlight.domain.adpater.jira.software.cloud.rest.api.JiraSoftwareCloudAdapterImpl;
 import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.MondayGraphQlAdapterImpl;
-import os.psy.research.spotlight.infrastructure.errorHandling.exceptions.UnknownPmVendor;
+import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.UnknownPmVendor;
 
 import java.util.stream.Stream;
 
