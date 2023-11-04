@@ -1,13 +1,17 @@
 package os.psy.research.spotlight.domain.adpater.jira.software.cloud.rest.api.converter;
 
-import jira.software.cloud.rest.api.RawBoards;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import os.psy.research.spotlight.testDataFactory.RawDataOm;
 class BoardsConverterTest {
-
     @Test
     void toBoards() {
-        RawBoards raw = new RawBoards();
-        BoardsConverter.of(raw);
+        var rawBoards = RawDataOm.Boards.complete().build();
+
+        var result = BoardsConverter.of(rawBoards);
+
+        Assertions.assertEquals(rawBoards.getValues().get(0).getId().toString(), result.get(0).getBoardId());
+        Assertions.assertEquals(rawBoards.getValues().get(0).getName(), result.get(0).getBoardName());
     }
 
 }

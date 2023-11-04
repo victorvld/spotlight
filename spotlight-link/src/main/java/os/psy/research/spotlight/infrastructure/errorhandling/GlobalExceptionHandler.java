@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.infrastructure.errorHandling;
+package os.psy.research.spotlight.infrastructure.errorhandling;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,5 +27,7 @@ public class GlobalExceptionHandler {
         errorResponse.put("errors", errors);
         return errorResponse;
     }
+
+    // TODO: 03/11/2023 Handle all the missing exceptions thrown within the whole app. 
 
 }
