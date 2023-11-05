@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.ValidationException;
-import os.psy.research.spotlight.testDataFactory.RawDataOm;
+import os.psy.research.spotlight.testDataFactory.jira.software.cloud.rest.api.RawDataOm;
 
 import java.util.Set;
 

@@ -1,11 +1,15 @@
 package os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class GetAllBoardsMondayApiResponse {
+
+@Builder
+public class RawBoards {
     @JsonProperty("data")
     public Data getData() {
         return this.data;
@@ -28,11 +32,12 @@ public class GetAllBoardsMondayApiResponse {
 
     int account_id;
 
+    @Builder
     @Getter
     public static class Data {
 
         @JsonProperty("boards")
-        public ArrayList<Board> getBoards() {
+        public List<Board> getBoards() {
             return this.boards;
         }
 
@@ -40,8 +45,10 @@ public class GetAllBoardsMondayApiResponse {
             this.boards = boards;
         }
 
-        public ArrayList<Board> boards;
+        public List<Board> boards;
 
+        @Builder
+        @Getter
         public static class Board {
 
 
