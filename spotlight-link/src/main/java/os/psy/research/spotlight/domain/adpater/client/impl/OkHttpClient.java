@@ -1,8 +1,10 @@
 package os.psy.research.spotlight.domain.adpater.client.impl;
 
 import okhttp3.Credentials;
+import okhttp3.HttpUrl;
 import okhttp3.Request;
 import os.psy.research.spotlight.domain.adpater.client.HttpClient;
+import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.RestCallException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -17,15 +19,38 @@ public class OkHttpClient implements HttpClient {
             .build();
 
     @Override
-    public Map.Entry<Integer, String> sendGetRequest(String username, String token, String url) throws IOException {
+    public Map.Entry<Integer, String> sendGetRequest(String username, String token, String url) {
         var credential = Credentials.basic(username, token);
         var request = new Request.Builder().url(url).get().addHeader("Authorization", credential).build();
-        var response = client.newCall(request).execute();
-        return Map.entry(response.code(), Objects.requireNonNull(response.body()).string());
+        try {
+            var response = client.newCall(request).execute();
+            return Map.entry(response.code(), Objects.requireNonNull(response.body()).string());
+        } catch (IOException e) {
+            throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
+        }
     }
 
     @Override
     public Map.Entry<Integer, String> sendGetRequest(String username, String token, String url, String query) {
-        return null;
+        try {
+            var response = client.newCall(buildRequest(token, buildGraphQlUrl(url, query))).execute();
+            return Map.entry(response.code(), Objects.requireNonNull(response.body()).string());
+        } catch (IOException e) {
+            throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
+        }
+    }
+    private HttpUrl buildGraphQlUrl(String url, String query) {
+        return Objects.requireNonNull(HttpUrl.parse(url))
+                .newBuilder()
+                .addQueryParameter("query", query)
+                .build();
+    }
+
+    private Request buildRequest(String token, HttpUrl url) {
+        return new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("Authorization", token)
+                .build();
     }
 }

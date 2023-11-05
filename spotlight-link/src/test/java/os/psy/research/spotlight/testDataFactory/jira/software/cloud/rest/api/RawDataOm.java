@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.testDataFactory;
+package os.psy.research.spotlight.testDataFactory.jira.software.cloud.rest.api;
 
 import jira.software.cloud.rest.api.RawBoard;
 import jira.software.cloud.rest.api.RawBoards;

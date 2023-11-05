@@ -2,7 +2,7 @@ package os.psy.research.spotlight.domain.adpater.jira.software.cloud.rest.api.co
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import os.psy.research.spotlight.testDataFactory.RawDataOm;
+import os.psy.research.spotlight.testDataFactory.jira.software.cloud.rest.api.RawDataOm;
 class BoardsConverterTest {
     @Test
     void toBoards() {
