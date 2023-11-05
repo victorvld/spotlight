@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import os.psy.research.spotlight.domain.adpater.client.HttpClient;
 import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.constant.Constants;
-import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.RawBoards;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.GetAllBoardsResponse;
 import os.psy.research.spotlight.domain.adpater.processor.JsonDeserializer;
 import os.psy.research.spotlight.domain.adpater.response.handling.strategy.ResponseHandlingStrategy;
 import os.psy.research.spotlight.domain.entity.Account;
@@ -26,11 +26,11 @@ class MondayGraphQlAdapterImplTest {
         var token = "token";
         var response = "response";
         var acc = Account.builder().token(token).build();
-        var rawBoards = RawDataOm.Boards.complete().build();
+        var rawBoards = RawDataOm.Boards.complete();
         var statusCode = 999;
         when(client.sendGetRequest(null, token, Constants.getApiMondayV2(), Constants.getQueryGetAllBoards())).thenReturn(Map.entry(statusCode, response));
         when(resHandlingStrategy.handleResponse(statusCode, response)).thenReturn(response);
-        when(deserializer.deserialize(response, RawBoards.class)).thenReturn(rawBoards);
+        when(deserializer.deserialize(response, GetAllBoardsResponse.class)).thenReturn(rawBoards);
 
         var result = underTest.getAllBoards(acc);
 

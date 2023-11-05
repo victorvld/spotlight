@@ -8,7 +8,7 @@ public class Constants {
     public static final String QUERY_GET_ALL_BOARDS_NAME_ID = "query{boards(){name id}}";
 
     public static String getApiMondayV2() {
-        return QUERY_GET_ALL_BOARDS_NAME_ID;
+        return API_MONDAY_V2;
     }
 
     public static String getQueryGetAllBoards() {

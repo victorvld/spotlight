@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import os.psy.research.spotlight.domain.adpater.client.HttpClient;
 import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.constant.Constants;
 import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.converter.MondayResponseConverter;
-import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.RawBoards;
+import os.psy.research.spotlight.domain.adpater.monday.graph.ql.api.mapper.GetAllBoardsResponse;
 import os.psy.research.spotlight.domain.adpater.processor.JsonDeserializer;
 import os.psy.research.spotlight.domain.adpater.response.handling.strategy.ResponseHandlingStrategy;
 import os.psy.research.spotlight.domain.entity.Account;
@@ -33,7 +33,7 @@ public class MondayGraphQlAdapterImpl implements PmAdapter {
         log.info("Retrieving all boards for domain {}.", API_MONDAY_V2);
         var response = client.sendGetRequest(account.getUsername(), account.getToken(), getApiMondayV2(), Constants.getQueryGetAllBoards());
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
-        var getAllBoardsResponse = deserializer.deserialize(content, RawBoards.class);
+        var getAllBoardsResponse = deserializer.deserialize(content, GetAllBoardsResponse.class);
         return MondayResponseConverter.convertToBoards(getAllBoardsResponse);
     }
 }
