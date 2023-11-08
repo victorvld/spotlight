@@ -23,10 +23,13 @@
         <module>spotlight-link</module>
         <module>spotlight-core</module>
         <module>spotlight-link-flyway</module>
+        <module>factory-impl</module>
+        <module>spotlight-link-rest-api</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
+        <mvn.compiler.plugin.version>3.11.0</mvn.compiler.plugin.version>
     </properties>
 
 </project>
