@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@SuperBuilder(toBuilder=true)
 public abstract class AbstractEntity implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

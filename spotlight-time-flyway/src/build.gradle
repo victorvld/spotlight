@@ -1,0 +1,5 @@
+dependencies {
+    implementation 'org.flywaydb:flyway-core:7.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.0.6'
+    runtimeOnly 'org.postgresql:postgresql'
+}
