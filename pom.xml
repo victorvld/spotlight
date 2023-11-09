@@ -3,14 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
-        <relativePath/>
-    </parent>
-
-    <groupId>os.psy.research</groupId>
+    <groupId>os.spotlight</groupId>
     <artifactId>spotlight</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>spotlight</name>
@@ -18,13 +11,13 @@
     <description>Time Analysis Application</description>
 
     <modules>
-        <module>spotlight-time-flyway</module>
-        <module>spotlight-time</module>
-        <module>spotlight-link</module>
-        <module>spotlight-core</module>
-        <module>spotlight-link-flyway</module>
-        <module>factory-impl</module>
-        <module>spotlight-link-rest-api</module>
+        <module>time/spotlight-time</module>
+        <module>time/spotlight-time-flyway</module>
+        <module>common/spotlight-common</module>
+        <module>link/core/spotlight-link-core</module>
+        <module>link/infrastructure/spotlight-link-rest-api</module>
+        <module>link/infrastructure/spotlight-link-flyway</module>
+        <module>link/infrastructure/spotlight-link-vendor-adapter-factory</module>
     </modules>
 
     <properties>
