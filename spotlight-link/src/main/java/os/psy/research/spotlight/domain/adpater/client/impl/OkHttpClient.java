@@ -4,7 +4,6 @@ import okhttp3.Credentials;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import os.psy.research.spotlight.domain.adpater.client.HttpClient;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.RestCallException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,7 +25,9 @@ public class OkHttpClient implements HttpClient {
             var response = client.newCall(request).execute();
             return Map.entry(response.code(), Objects.requireNonNull(response.body()).string());
         } catch (IOException e) {
-            throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
+            throw new RuntimeException();
+
+            //throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
         }
     }
 
@@ -36,7 +37,9 @@ public class OkHttpClient implements HttpClient {
             var response = client.newCall(buildRequest(token, buildGraphQlUrl(url, query))).execute();
             return Map.entry(response.code(), Objects.requireNonNull(response.body()).string());
         } catch (IOException e) {
-            throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
+            throw new RuntimeException();
+
+//            throw new RestCallException(String.format("Failed to get response from url: %s", url), e);
         }
     }
     private HttpUrl buildGraphQlUrl(String url, String query) {

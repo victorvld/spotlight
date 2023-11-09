@@ -2,7 +2,6 @@ package os.psy.research.spotlight.domain.adpater.processor;
 
 import com.networknt.schema.ValidationMessage;
 import jira.software.cloud.rest.api.RawBoards;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.ValidationException;
 
 import java.util.Set;
 
@@ -20,6 +19,7 @@ public class JsonProcessor {
         if (errors != null && errors.isEmpty()) {
             return deserializer.deserialize(response, RawBoards.class);
         }
-        throw new ValidationException(String.format("Jira Software Cloud Rest API contain validation errors. Errors [%s]", errors));
+        throw new RuntimeException();
+        //throw new ValidationException(String.format("Jira Software Cloud Rest API contain validation errors. Errors [%s]", errors));
     }
 }

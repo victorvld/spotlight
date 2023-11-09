@@ -9,11 +9,11 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.DeserializationException;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.RestCallException;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.RestResponseException;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.UnknownPmVendor;
 import os.spotlight.link.rest.api.dto.GetBoardsRequest;
+import os.spotlight.link.rest.api.error.handling.exceptions.DeserializationException;
+import os.spotlight.link.rest.api.error.handling.exceptions.RestCallException;
+import os.spotlight.link.rest.api.error.handling.exceptions.RestResponseException;
+import os.spotlight.link.rest.api.error.handling.exceptions.UnknownPmVendor;
 
 @ExtendWith(MockitoExtension.class)
 class GlobalExceptionHandlerTest {

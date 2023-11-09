@@ -34,7 +34,7 @@ class MondayGraphQlAdapterImplTest {
 
         var result = underTest.getAllBoards(acc);
 
-        Assertions.assertEquals("1.0", result.get(0).getBoardId());
-        Assertions.assertEquals("name", result.get(0).getBoardName());
+        Assertions.assertEquals("1.0", result.get(0).boardId());
+        Assertions.assertEquals("name", result.get(0).boardName());
     }
 }

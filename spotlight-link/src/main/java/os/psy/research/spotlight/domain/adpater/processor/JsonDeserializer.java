@@ -2,7 +2,6 @@ package os.psy.research.spotlight.domain.adpater.processor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.DeserializationException;
 
 public class JsonDeserializer {
 
@@ -16,7 +15,9 @@ public class JsonDeserializer {
         try {
             return mapper.readValue(response, type);
         } catch (JsonProcessingException e) {
-            throw new DeserializationException("Error while deserializing Json response.", e);
+            throw new RuntimeException();
+
+//            throw new DeserializationException("Error while deserializing Json response.", e);
         }
     }
 }

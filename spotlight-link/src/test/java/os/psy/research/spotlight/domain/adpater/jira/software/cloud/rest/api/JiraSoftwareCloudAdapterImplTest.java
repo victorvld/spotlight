@@ -29,7 +29,7 @@ class JiraSoftwareCloudAdapterImplTest {
         var token = "token";
         var url = "url";
         var response = "response";
-        var acc = Account.builder().username(username).token(token).webDomain(url).build();
+        var acc = Account.builder().username(username).token(token).domain(url).build();
         var rawBoards = RawDataOm.Boards.complete().build();
         var statusCode = 999;
         when(client.sendGetRequest(username, token, Constants.getAllBoardsUrl(url))).thenReturn(Map.entry(statusCode, response));
@@ -38,7 +38,7 @@ class JiraSoftwareCloudAdapterImplTest {
 
         var result = underTest.getAllBoards(acc);
 
-        Assertions.assertEquals("1.0", result.get(0).getBoardId());
-        Assertions.assertEquals("name", result.get(0).getBoardName());
+        Assertions.assertEquals("1.0", result.get(0).boardId());
+        Assertions.assertEquals("name", result.get(0).boardName());
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import os.psy.research.spotlight.domain.service.LinkService;
 import os.spotlight.link.rest.api.dto.GetBoardsRequest;
 import os.spotlight.link.rest.api.mapper.BoardMapper;
+import os.spotlight.link.rest.api.testDataFactory.EntityOm;
 
 import java.util.Collections;
 import java.util.stream.Stream;
