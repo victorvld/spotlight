@@ -6,7 +6,6 @@ import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
 import com.networknt.schema.ValidationMessage;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.DeserializationException;
 
 import java.util.Set;
 
@@ -29,7 +28,8 @@ public class JsonValidator {
             return mapper.readTree(content);
         } catch (Exception e) {
             var msg = String.format("Error while deserializing incoming Json:%n%s.", content);
-            throw new DeserializationException(msg, e);
+            throw new RuntimeException();
+//            throw new DeserializationException(msg, e);
         }
     }
 
@@ -47,7 +47,8 @@ public class JsonValidator {
             return mapper.readTree(Thread.currentThread().getContextClassLoader().getResourceAsStream(name));
         } catch (Exception e) {
             var msg = String.format("Error while deserializing schema:%n%s.", name);
-            throw new DeserializationException(msg, e);
+//            throw new DeserializationException(msg, e);
+            throw new RuntimeException();
         }
     }
 }

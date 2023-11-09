@@ -13,7 +13,6 @@ import os.psy.research.spotlight.domain.adpater.response.handling.strategy.Respo
 import os.psy.research.spotlight.domain.adpater.response.handling.strategy.impl.ThrowExceptionStrategy;
 import os.psy.research.spotlight.domain.service.PmAdapter;
 import os.psy.research.spotlight.domain.service.PmFactory;
-import os.psy.research.spotlight.infrastructure.errorhandling.exceptions.UnknownPmVendor;
 
 @Component
 public class PmFactoryImpl implements PmFactory {
@@ -32,7 +31,8 @@ public class PmFactoryImpl implements PmFactory {
         return switch (vendor) {
             case "jira" -> new JiraSoftwareCloudAdapterImpl(processor, client, resHandlingStrategy);
             case "monday" -> new MondayGraphQlAdapterImpl(client, resHandlingStrategy, deserializer);
-            default -> throw new UnknownPmVendor(String.format("Unknown Project Manager Vendor %s.", vendor));
+            default -> throw new RuntimeException(String.format("Unknown Project Manager Vendor %s.", vendor));
+//            default -> throw new UnknownPmVendor(String.format("Unknown Project Manager Vendor %s.", vendor));
         };
     }
 }

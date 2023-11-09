@@ -2,23 +2,21 @@ package os.psy.research.spotlight.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import os.psy.research.spotlight.domain.entity.Board;
-import os.psy.research.spotlight.domain.repository.AccountRepository;
+import os.psy.research.spotlight.domain.repository.AccountRepositoryService;
 
 import java.util.List;
 
-@Service
 @Slf4j
 @RequiredArgsConstructor
 public class LinkService {
 
     private final PmFactory pmFactory;
 
-    private final AccountRepository repository;
+    private final AccountRepositoryService repository;
 
     public List<Board> getAllBoardsForGivenAccount(String accountId) {
         var account = repository.findByEntityId(accountId);
-        return this.pmFactory.get(account.getType()).getAllBoards(account);
+        return this.pmFactory.get(account.type()).getAllBoards(account);
     }
 }

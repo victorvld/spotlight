@@ -26,9 +26,9 @@ public class JiraSoftwareCloudAdapterImpl implements PmAdapter {
 
     @Override
     public List<Board> getAllBoards(Account account) {
-        log.info("Retrieving all boards for account: {} and domain {}", account.getUsername(), account.getWebDomain());
-        var url = Constants.getAllBoardsUrl(account.getWebDomain());
-        var response = client.sendGetRequest(account.getUsername(), account.getToken(), url);
+        log.info("Retrieving all boards for account: {} and domain {}", account.username(), account.domain());
+        var url = Constants.getAllBoardsUrl(account.domain());
+        var response = client.sendGetRequest(account.username(), account.token(), url);
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var raw = processor.process(content, Constants.getAllBoardsSchemaClasspath());
         return BoardsConverter.of(raw);

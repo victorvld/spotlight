@@ -31,7 +31,7 @@ public class MondayGraphQlAdapterImpl implements PmAdapter {
     @Override
     public List<Board> getAllBoards(Account account) {
         log.info("Retrieving all boards for domain {}.", API_MONDAY_V2);
-        var response = client.sendGetRequest(account.getUsername(), account.getToken(), getApiMondayV2(), Constants.getQueryGetAllBoards());
+        var response = client.sendGetRequest(account.username(), account.token(), getApiMondayV2(), Constants.getQueryGetAllBoards());
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var getAllBoardsResponse = deserializer.deserialize(content, GetAllBoardsResponse.class);
         return MondayResponseConverter.convertToBoards(getAllBoardsResponse);

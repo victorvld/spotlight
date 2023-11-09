@@ -10,8 +10,8 @@ class BoardsConverterTest {
 
         var result = BoardsConverter.of(rawBoards);
 
-        Assertions.assertEquals(rawBoards.getValues().get(0).getId().toString(), result.get(0).getBoardId());
-        Assertions.assertEquals(rawBoards.getValues().get(0).getName(), result.get(0).getBoardName());
+        Assertions.assertEquals(rawBoards.getValues().get(0).getId().toString(), result.get(0).boardId());
+        Assertions.assertEquals(rawBoards.getValues().get(0).getName(), result.get(0).boardName());
     }
 
 }

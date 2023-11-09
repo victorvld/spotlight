@@ -9,8 +9,6 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <packaging>pom</packaging>
-    <groupId>os.psy.research.spotlight.common</groupId>
     <artifactId>spotlight-core</artifactId>
 
     <properties>

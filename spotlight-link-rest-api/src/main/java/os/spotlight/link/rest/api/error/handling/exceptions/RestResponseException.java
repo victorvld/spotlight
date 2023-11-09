@@ -1,4 +1,4 @@
-package os.psy.research.spotlight.infrastructure.errorhandling.exceptions;
+package os.spotlight.link.rest.api.error.handling.exceptions;
 
 public class RestResponseException extends RuntimeException {
 
