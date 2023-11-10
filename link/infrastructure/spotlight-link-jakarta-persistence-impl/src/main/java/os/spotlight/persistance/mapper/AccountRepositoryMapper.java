@@ -1,7 +1,7 @@
-package os.spotlight.link.rest.api.persistance.impl;
+package os.spotlight.persistance.mapper;
 
-import os.spotlight.entity.Account;
-import os.spotlight.link.rest.api.persistance.entity.AccountEntity;
+import os.spotlight.persistance.entity.Account;
+import os.spotlight.persistance.entity.AccountEntity;
 
 public class AccountRepositoryMapper {
     public Account toDomain(AccountEntity entity) {

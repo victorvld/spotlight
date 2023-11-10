@@ -3,7 +3,7 @@ package os.spotlight.link.adapter.monday.graph.ql.api;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import os.spotlight.entity.Account;
+import os.spotlight.persistance.entity.Account;
 import os.spotlight.link.adapter.monday.graph.ql.api.constant.Constants;
 import os.spotlight.link.adapter.monday.graph.ql.api.mapper.GetAllBoardsResponse;
 import os.spotlight.link.adapter.monday.graph.ql.api.test.data.factory.RawDataOm;

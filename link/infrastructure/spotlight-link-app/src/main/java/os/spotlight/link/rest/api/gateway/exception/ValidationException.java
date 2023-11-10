@@ -1,4 +1,4 @@
-package os.spotlight.link.rest.api.exception;
+package os.spotlight.link.rest.api.gateway.exception;
 
 public class ValidationException extends RuntimeException {
     public ValidationException(String msg) {

@@ -4,7 +4,7 @@ import okhttp3.Credentials;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import os.spotlight.link.factory.adpater.client.HttpClient;
-import os.spotlight.link.rest.api.exception.RestCallException;
+import os.spotlight.link.rest.api.gateway.exception.RestCallException;
 
 import java.io.IOException;
 import java.util.Map;

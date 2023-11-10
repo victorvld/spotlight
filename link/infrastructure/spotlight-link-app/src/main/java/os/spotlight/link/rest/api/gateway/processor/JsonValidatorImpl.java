@@ -7,7 +7,7 @@ import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersionDetector;
 import com.networknt.schema.ValidationMessage;
 import os.spotlight.link.factory.adpater.processor.JsonValidator;
-import os.spotlight.link.rest.api.exception.DeserializationException;
+import os.spotlight.link.rest.api.gateway.exception.DeserializationException;
 
 import java.util.Set;
 

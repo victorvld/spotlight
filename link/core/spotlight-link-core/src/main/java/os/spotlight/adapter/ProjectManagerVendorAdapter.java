@@ -1,7 +1,7 @@
 package os.spotlight.adapter;
 
-import os.spotlight.entity.Account;
-import os.spotlight.entity.Board;
+import os.spotlight.persistance.entity.Account;
+import os.spotlight.persistance.entity.Board;
 
 import java.util.List;
 

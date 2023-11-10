@@ -1,11 +1,12 @@
-package os.spotlight.link.rest.api.persistance.impl;
+package os.spotlight.persistance.impl;
 
-import lombok.AllArgsConstructor;
-import os.spotlight.entity.Account;
-import os.spotlight.link.rest.api.persistance.respository.AccountRepository;
+import lombok.RequiredArgsConstructor;
+import os.spotlight.persistance.entity.Account;
+import os.spotlight.persistance.mapper.AccountRepositoryMapper;
+import os.spotlight.persistance.respository.AccountRepository;
 import os.spotlight.repository.AccountRepositoryService;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AccountRepositoryServiceImpl implements AccountRepositoryService {
 
     private final AccountRepository repository;

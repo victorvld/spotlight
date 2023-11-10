@@ -2,7 +2,7 @@ package os.spotlight.link.adapter.jira.software.cloud.rest.api.converter;
 
 import jira.software.cloud.rest.api.RawBoard;
 import jira.software.cloud.rest.api.RawBoards;
-import os.spotlight.entity.Board;
+import os.spotlight.persistance.entity.Board;
 
 import java.util.List;
 
