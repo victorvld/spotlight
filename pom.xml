@@ -11,13 +11,15 @@
     <description>Time Analysis Application</description>
 
     <modules>
+        <module>common/spotlight-common</module>
         <module>time/spotlight-time</module>
         <module>time/spotlight-time-flyway</module>
-        <module>common/spotlight-common</module>
         <module>link/core/spotlight-link-core</module>
-        <module>link/infrastructure/spotlight-link-rest-api</module>
+        <module>link/infrastructure/spotlight-link-app</module>
         <module>link/infrastructure/spotlight-link-flyway</module>
-        <module>link/infrastructure/spotlight-link-vendor-adapter-factory</module>
+        <module>link/infrastructure/spotlight-link-core-adapter</module>
+        <module>link/infrastructure/spotlight-vendor-adapter-impl/jira-software-cloud-rest-api-adapter-impl</module>
+        <module>link/infrastructure/spotlight-vendor-adapter-impl/monday-graph-ql-api-adapter-impl</module>
     </modules>
 
     <properties>
