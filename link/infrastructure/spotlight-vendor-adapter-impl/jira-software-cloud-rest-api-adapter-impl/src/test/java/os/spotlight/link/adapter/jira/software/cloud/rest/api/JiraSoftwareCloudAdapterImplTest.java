@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import os.spotlight.entity.Account;
+import os.spotlight.persistance.entity.Account;
 import os.spotlight.link.adapter.jira.software.cloud.rest.api.constant.Constants;
 import os.spotlight.link.adapter.jira.software.cloud.rest.api.test.data.factory.RawDataOm;
 import os.spotlight.link.factory.adpater.client.HttpClient;

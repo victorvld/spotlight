@@ -1,4 +1,4 @@
-package os.spotlight.link.rest.api.persistance.entity;
+package os.spotlight.persistance.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

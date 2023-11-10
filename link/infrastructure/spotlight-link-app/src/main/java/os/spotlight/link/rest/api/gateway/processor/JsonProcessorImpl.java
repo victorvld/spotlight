@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import os.spotlight.link.factory.adpater.processor.JsonDeserializer;
 import os.spotlight.link.factory.adpater.processor.JsonProcessor;
 import os.spotlight.link.factory.adpater.processor.JsonValidator;
-import os.spotlight.link.rest.api.exception.ValidationException;
+import os.spotlight.link.rest.api.gateway.exception.ValidationException;
 
 import java.util.Set;
 

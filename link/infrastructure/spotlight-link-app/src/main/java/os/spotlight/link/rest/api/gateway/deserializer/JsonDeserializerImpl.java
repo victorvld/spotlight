@@ -3,7 +3,7 @@ package os.spotlight.link.rest.api.gateway.deserializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import os.spotlight.link.factory.adpater.processor.JsonDeserializer;
-import os.spotlight.link.rest.api.exception.DeserializationException;
+import os.spotlight.link.rest.api.gateway.exception.DeserializationException;
 
 public class JsonDeserializerImpl implements JsonDeserializer {
 

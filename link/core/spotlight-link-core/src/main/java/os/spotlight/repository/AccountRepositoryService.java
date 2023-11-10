@@ -1,6 +1,6 @@
 package os.spotlight.repository;
 
-import os.spotlight.entity.Account;
+import os.spotlight.persistance.entity.Account;
 
 public interface AccountRepositoryService {
     Account findByEntityId(String accountId);

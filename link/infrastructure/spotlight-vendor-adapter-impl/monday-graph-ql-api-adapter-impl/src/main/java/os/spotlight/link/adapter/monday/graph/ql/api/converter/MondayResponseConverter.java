@@ -1,6 +1,6 @@
 package os.spotlight.link.adapter.monday.graph.ql.api.converter;
 
-import os.spotlight.entity.Board;
+import os.spotlight.persistance.entity.Board;
 import os.spotlight.link.adapter.monday.graph.ql.api.mapper.GetAllBoardsResponse;
 
 import java.util.List;

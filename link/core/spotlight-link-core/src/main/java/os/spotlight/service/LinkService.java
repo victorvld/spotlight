@@ -2,7 +2,7 @@ package os.spotlight.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import os.spotlight.entity.Board;
+import os.spotlight.persistance.entity.Board;
 import os.spotlight.factory.ProjectManagerVendorFactory;
 import os.spotlight.repository.AccountRepositoryService;
 

@@ -3,7 +3,7 @@ package os.spotlight.link.rest.api.gateway.processor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import os.spotlight.link.rest.api.exception.ValidationException;
+import os.spotlight.link.rest.api.gateway.exception.ValidationException;
 import os.spotlight.link.rest.api.gateway.deserializer.JsonDeserializerImpl;
 
 import java.util.Set;

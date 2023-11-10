@@ -20,6 +20,7 @@
         <module>link/infrastructure/spotlight-link-core-adapter</module>
         <module>link/infrastructure/spotlight-vendor-adapter-impl/jira-software-cloud-rest-api-adapter-impl</module>
         <module>link/infrastructure/spotlight-vendor-adapter-impl/monday-graph-ql-api-adapter-impl</module>
+        <module>link/infrastructure/spotlight-link-jakarta-persistence-impl</module>
     </modules>
 
     <properties>

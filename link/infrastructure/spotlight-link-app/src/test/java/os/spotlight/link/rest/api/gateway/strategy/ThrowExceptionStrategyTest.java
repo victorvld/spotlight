@@ -3,7 +3,7 @@ package os.spotlight.link.rest.api.gateway.strategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import os.spotlight.link.factory.adpater.response.handling.strategy.ResponseHandlingStrategy;
-import os.spotlight.link.rest.api.exception.RestResponseException;
+import os.spotlight.link.rest.api.gateway.exception.RestResponseException;
 
 class ThrowExceptionStrategyTest {
     private final ResponseHandlingStrategy underTest = new ThrowExceptionStrategy();

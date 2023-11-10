@@ -1,6 +1,6 @@
 package os.spotlight.link.rest.api.test.data.factory;
 
-import os.spotlight.entity.Board;
+import os.spotlight.persistance.entity.Board;
 public class EntityOm {
 
     public static Board.BoardBuilder complete() {
