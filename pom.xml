@@ -10,6 +10,11 @@
     <packaging>pom</packaging>
     <description>Time Analysis Application</description>
 
+    <properties>
+        <java.version>17</java.version>
+        <mvn.compiler.plugin.version>3.11.0</mvn.compiler.plugin.version>
+    </properties>
+
     <modules>
         <module>common/spotlight-common</module>
 
@@ -27,9 +32,5 @@
         <module>link/infrastructure/spotlight-link-adapter-tools-impl</module>
     </modules>
 
-    <properties>
-        <java.version>17</java.version>
-        <mvn.compiler.plugin.version>3.11.0</mvn.compiler.plugin.version>
-    </properties>
 
 </project>

@@ -17,7 +17,7 @@
         <spring.boot.version>3.1.5</spring.boot.version>
         <mvn.compiler.plugin.version>3.11.0</mvn.compiler.plugin.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spotlight.version>1.0.0-SNAPSHOT</spotlight.version>
     </properties>
 
     <dependencies>
@@ -34,7 +34,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,31 +65,31 @@
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>spotlight-link-core-adapter-tools</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>spotlight-link-adapter-tools-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>jira-software-cloud-rest-api-adapter-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>monday-graph-ql-api-adapter-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>spotlight-link-jakarta-persistence-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
