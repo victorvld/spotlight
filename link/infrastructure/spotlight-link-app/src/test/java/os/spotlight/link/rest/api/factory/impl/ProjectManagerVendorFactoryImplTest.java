@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import os.spotlight.link.factory.adpater.gateway.JiraGateway;
-import os.spotlight.link.factory.adpater.gateway.MondayGateway;
+import os.spotlight.adapter.JiraGateway;
+import os.spotlight.adapter.MondayGateway;
 import os.spotlight.link.rest.api.factory.impl.exception.UnknownPmVendor;
 
 import java.util.stream.Stream;

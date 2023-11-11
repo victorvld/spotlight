@@ -64,29 +64,14 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>os.spotlight</groupId>
-            <artifactId>spotlight-link</artifactId>
+            <artifactId>spotlight-link-core-adapter-tools</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
-            <artifactId>factory-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>os.spotlight</groupId>
-            <artifactId>spotlight-link-core-adapter</artifactId>
+            <artifactId>spotlight-link-adapter-tools-impl</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

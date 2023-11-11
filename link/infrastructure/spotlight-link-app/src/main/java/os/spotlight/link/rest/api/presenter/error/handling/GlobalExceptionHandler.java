@@ -7,9 +7,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import os.spotlight.link.rest.api.gateway.exception.DeserializationException;
-import os.spotlight.link.rest.api.gateway.exception.RestCallException;
-import os.spotlight.link.rest.api.gateway.exception.RestResponseException;
+import os.spotlight.adapter.tools.impl.exception.DeserializationException;
+import os.spotlight.adapter.tools.impl.exception.RestCallException;
+import os.spotlight.adapter.tools.impl.exception.RestResponseException;
 import os.spotlight.link.rest.api.factory.impl.exception.UnknownPmVendor;
 
 import java.util.HashMap;
