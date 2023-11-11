@@ -3,9 +3,7 @@ package os.spotlight.link.adapter.jira.software.cloud.rest.api;
 import jira.software.cloud.rest.api.RawBoards;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import os.spotlight.persistance.entity.Account;
 import os.spotlight.link.adapter.jira.software.cloud.rest.api.constant.Constants;
 import os.spotlight.link.adapter.jira.software.cloud.rest.api.test.data.factory.RawDataOm;
@@ -17,7 +15,6 @@ import java.util.Map;
 
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 class JiraSoftwareCloudAdapterImplTest {
     private final JsonProcessor processor = Mockito.mock(JsonProcessor.class);
     private final HttpClient client = Mockito.mock(HttpClient.class);

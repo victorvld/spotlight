@@ -11,19 +11,20 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lombok.version>1.18.30</lombok.version>
+        <spotlight.version>1.0.0-SNAPSHOT</spotlight.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>os.spotlight</groupId>
             <artifactId>spotlight-common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${spotlight.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
