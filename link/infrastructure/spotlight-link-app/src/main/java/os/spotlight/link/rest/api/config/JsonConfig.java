@@ -2,12 +2,11 @@ package os.spotlight.link.rest.api.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import os.spotlight.link.rest.api.gateway.deserializer.JsonDeserializerImpl;
-import os.spotlight.link.rest.api.gateway.processor.JsonProcessorImpl;
-import os.spotlight.link.rest.api.gateway.processor.JsonValidatorImpl;
+import os.spotlight.adapter.tools.impl.deserializer.JsonDeserializerImpl;
+import os.spotlight.adapter.tools.impl.processor.JsonProcessorImpl;
+import os.spotlight.adapter.tools.impl.processor.JsonValidatorImpl;
 
 @Configuration
 @RequiredArgsConstructor

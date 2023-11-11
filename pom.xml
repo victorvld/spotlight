@@ -12,15 +12,19 @@
 
     <modules>
         <module>common/spotlight-common</module>
+
         <module>time/spotlight-time</module>
         <module>time/spotlight-time-flyway</module>
+
         <module>link/core/spotlight-link-core</module>
+        <module>link/core/spotlight-link-core-adapter-tools</module>
+
         <module>link/infrastructure/spotlight-link-app</module>
         <module>link/infrastructure/spotlight-link-flyway</module>
-        <module>link/core/spotlight-link-core-adapter</module>
-        <module>link/infrastructure/spotlight-gateway/jira-software-cloud-rest-api-adapter-impl</module>
-        <module>link/infrastructure/spotlight-gateway/monday-graph-ql-api-adapter-impl</module>
+        <module>link/infrastructure/spotlight-link-adapter-impl/jira-software-cloud-rest-api-adapter-impl</module>
+        <module>link/infrastructure/spotlight-link-adapter-impl/monday-graph-ql-api-adapter-impl</module>
         <module>link/infrastructure/spotlight-link-jakarta-persistence-impl</module>
+        <module>link/infrastructure/spotlight-link-adapter-tools-impl</module>
     </modules>
 
     <properties>

@@ -3,8 +3,8 @@ package os.spotlight.link.rest.api.factory.impl;
 import lombok.RequiredArgsConstructor;
 import os.spotlight.adapter.ProjectManagerVendorAdapter;
 import os.spotlight.factory.ProjectManagerVendorFactory;
-import os.spotlight.link.factory.adpater.gateway.JiraGateway;
-import os.spotlight.link.factory.adpater.gateway.MondayGateway;
+import os.spotlight.adapter.JiraGateway;
+import os.spotlight.adapter.MondayGateway;
 import os.spotlight.link.rest.api.factory.impl.exception.UnknownPmVendor;
 
 @RequiredArgsConstructor
