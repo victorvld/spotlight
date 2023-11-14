@@ -2,8 +2,8 @@ package os.spotlight.link.rest.api.presenter.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
-import os.spotlight.persistance.entity.Board;
 import os.spotlight.link.rest.api.presenter.dto.BoardDto;
+import os.spotlight.persistance.entity.Board;
 
 import java.util.List;
 

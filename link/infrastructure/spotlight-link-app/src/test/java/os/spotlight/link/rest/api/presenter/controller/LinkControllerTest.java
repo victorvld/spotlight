@@ -15,16 +15,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import os.spotlight.link.rest.api.presenter.dto.GetBoardsRequest;
+import os.spotlight.link.rest.api.presenter.dto.GetGroupsRequest;
 import os.spotlight.link.rest.api.presenter.mapper.BoardMapper;
-import os.spotlight.link.rest.api.test.data.factory.EntityOm;
-import os.spotlight.service.LinkService;
+import os.spotlight.persistance.entity.LinkService;
 
-import java.util.Collections;
 import java.util.stream.Stream;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,17 +36,34 @@ class LinkControllerTest {
     @MockBean
     private LinkService mockService;
 
-    @Value("${spotlight.api.link.path}/boards")
-    private String underTestEndpoint;
+    @Value("${spotlight.api.link.path}")
+    private String baseEndpoint;
+
+    @ParameterizedTest
+    @MethodSource("badBoardRequestsProvider")
+    void whenGetAllBoardsRequestFieldsDoNotPassValidationRulesThenReturns400(GetBoardsRequest content) throws Exception {
+        var json = mapper.writeValueAsString(content);
+        var request = get(baseEndpoint + "/boards").accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+
+        mockMvc.perform(request).andExpect(status().isBadRequest());
+    }
+
+    @ParameterizedTest
+    @MethodSource("badGroupRequestsProvider")
+    void whenGetAllGroupsRequestFieldsDoNotPassValidationRulesThenReturns400(GetGroupsRequest content) throws Exception {
+        var json = mapper.writeValueAsString(content);
+        var request = get(baseEndpoint + "/groups").accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+
+        mockMvc.perform(request).andExpect(status().isBadRequest());
+    }
 
     @Test
-    void whenGetBoardRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
+    void whenGetAllBoardRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
         var accountId = "acc1";
         var content = GetBoardsRequest.builder().accountId(accountId).build();
         var captor = ArgumentCaptor.forClass(String.class);
         var json = mapper.writeValueAsString(content);
-        var request = get(underTestEndpoint).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
-        when(mockService.getAllBoardsForGivenAccount(accountId)).thenReturn(Collections.singletonList(EntityOm.complete().build()));
+        var request = get(baseEndpoint + "/boards").accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
 
         mockMvc.perform(request).andExpect(status().isOk());
 
@@ -56,19 +71,35 @@ class LinkControllerTest {
         Assertions.assertEquals(accountId, captor.getValue());
     }
 
-    @ParameterizedTest
-    @MethodSource("badRequestsProvider")
-    void whenIncomingRequestFieldsDoNotPassValidationRulesThenReturns400(GetBoardsRequest content) throws Exception {
+    @Test
+    void whenGetAllGroupsRequestPassValidationRulesAndMediaTypesThenReturns200() throws Exception {
+        var accountId = "acc1";
+        var boardId = "boardId";
+        var content = GetGroupsRequest.builder().accountId(accountId).boardId(boardId).build();
+        var accCaptor = ArgumentCaptor.forClass(String.class);
+        var boardCaptor = ArgumentCaptor.forClass(String.class);
         var json = mapper.writeValueAsString(content);
-        var request = get(underTestEndpoint).accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
+        var request = get(baseEndpoint + "/groups").accept(MediaType.APPLICATION_JSON_VALUE).contentType(MediaType.APPLICATION_JSON_VALUE).content(json);
 
-        mockMvc.perform(request).andExpect(status().isBadRequest());
+        mockMvc.perform(request).andExpect(status().isOk());
+
+        verify(mockService, times(1)).getAllGroupsForGivenAccountAndBoardId(accCaptor.capture(), boardCaptor.capture());
+        Assertions.assertEquals(accountId, accCaptor.getValue());
+        Assertions.assertEquals(boardId, boardCaptor.getValue());
     }
 
-    static Stream<Arguments> badRequestsProvider() {
+    static Stream<Arguments> badBoardRequestsProvider() {
         return Stream.of(
                 Arguments.of(GetBoardsRequest.builder().accountId(" ").build()),
                 Arguments.of(GetBoardsRequest.builder().build())
+        );
+    }
+
+    static Stream<Arguments> badGroupRequestsProvider() {
+        return Stream.of(
+                Arguments.of(GetGroupsRequest.builder().accountId(" ").build()),
+                Arguments.of(GetGroupsRequest.builder().boardId(" ").build()),
+                Arguments.of(GetGroupsRequest.builder().build())
         );
     }
 }
