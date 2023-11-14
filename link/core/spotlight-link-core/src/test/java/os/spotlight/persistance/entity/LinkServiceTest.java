@@ -16,11 +16,27 @@ class LinkServiceTest {
     private final ProjectManagerVendorFactory mockFactory = Mockito.mock(ProjectManagerVendorFactory.class);
     private final AccountRepositoryService mockRepository = Mockito.mock(AccountRepositoryService.class);
     private final ProjectManagerVendorAdapter mockAdapter = Mockito.mock(ProjectManagerVendorAdapter.class);
-
-    private LinkService underTest = new LinkService(mockFactory, mockRepository);
+    private final LinkService underTest = new LinkService(mockFactory, mockRepository);
 
     @Test
     void getAllBoardsForGivenAccount() {
+        var accountId = "acc";
+        var type = "type";
+        var account = Account.builder().type(type).build();
+        var accountIdCaptor = ArgumentCaptor.forClass(String.class);
+        var typeCaptor = ArgumentCaptor.forClass(String.class);
+        var accCaptor = ArgumentCaptor.forClass(Account.class);
+        when(mockRepository.findByEntityId(accountId)).thenReturn(account);
+        when(mockFactory.get(type)).thenReturn(mockAdapter);
+
+        underTest.getAllBoardsForGivenAccount(accountId);
+
+        verify(mockRepository, times(1)).findByEntityId(accountIdCaptor.capture());
+        verify(mockFactory, times(1)).get(typeCaptor.capture());
+        verify(mockAdapter, times(1)).getAllBoards(accCaptor.capture());
+        Assertions.assertEquals(accountId, accountIdCaptor.getValue());
+        Assertions.assertEquals(type, typeCaptor.getValue());
+        Assertions.assertEquals(account, accCaptor.getValue());
     }
 
     @Test
