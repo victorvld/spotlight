@@ -3,7 +3,7 @@ package os.spotlight.link.rest.api.presenter.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 import os.spotlight.link.rest.api.presenter.dto.GroupDto;
-import os.spotlight.service.Group;
+import os.spotlight.persistance.entity.Group;
 
 import java.util.List;
 

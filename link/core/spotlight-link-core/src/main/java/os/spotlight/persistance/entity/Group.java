@@ -1,4 +1,4 @@
-package os.spotlight.service;
+package os.spotlight.persistance.entity;
 
 import lombok.Builder;
 

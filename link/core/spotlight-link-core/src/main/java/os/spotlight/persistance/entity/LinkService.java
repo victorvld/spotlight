@@ -2,10 +2,8 @@ package os.spotlight.persistance.entity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import os.spotlight.persistance.entity.Board;
 import os.spotlight.factory.ProjectManagerVendorFactory;
 import os.spotlight.repository.AccountRepositoryService;
-import os.spotlight.service.Group;
 
 import java.util.List;
 
@@ -23,6 +21,8 @@ public class LinkService {
     }
 
     public List<Group> getAllGroupsForGivenAccountAndBoardId(String accountId, String boardId) {
-        return null;
+        var account = repository.findByEntityId(accountId);
+        return this.projectManagerVendorFactory.get(account.type()).getAllGroups(account, boardId);
+
     }
 }
