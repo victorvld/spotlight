@@ -1,7 +1,9 @@
 package os.spotlight.link.adapter.monday.graph.ql.api.converter;
 
+import monday.graph.ql.api.GetAllGroupsResponse;
 import os.spotlight.persistance.entity.Board;
 import os.spotlight.link.adapter.monday.graph.ql.api.mapper.GetAllBoardsResponse;
+import os.spotlight.persistance.entity.Group;
 
 import java.util.List;
 
@@ -22,4 +24,15 @@ public class MondayResponseConverter {
                 .build();
     }
 
+    public static List<Group> convertToGroups(GetAllGroupsResponse response) {
+        return response.getData().getBoards().get(0).getGroups().stream().map(MondayResponseConverter::convertToGroups)
+                .toList();
+    }
+
+    private static Group convertToGroups(monday.graph.ql.api.Group response) {
+        return Group.builder()
+                .groupId(response.getId())
+                .groupName(response.getTitle())
+                .build();
+    }
 }

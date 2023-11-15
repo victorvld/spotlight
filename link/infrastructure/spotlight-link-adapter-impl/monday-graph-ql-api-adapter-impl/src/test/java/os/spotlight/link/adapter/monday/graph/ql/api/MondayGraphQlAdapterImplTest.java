@@ -1,5 +1,6 @@
 package os.spotlight.link.adapter.monday.graph.ql.api;
 
+import monday.graph.ql.api.GetAllGroupsResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,5 +37,23 @@ class MondayGraphQlAdapterImplTest {
 
         Assertions.assertEquals("1.0", result.get(0).boardId());
         Assertions.assertEquals("name", result.get(0).boardName());
+    }
+
+    @Test
+    void WhenSendGetAllGroupsRequestThenReturnsEntityBoards() {
+        var token = "token";
+        var response = "response";
+        var boardId = "boardId";
+        var acc = Account.builder().token(token).build();
+        var getAllGroupsResponse = RawDataOm.Groups.complete();
+        var statusCode = 999;
+        when(client.sendGetRequest(null, token, Constants.getApiMondayV2(), Constants.getQueryGetAllGroups(boardId))).thenReturn(Map.entry(statusCode, response));
+        when(resHandlingStrategy.handleResponse(statusCode, response)).thenReturn(response);
+        when(deserializer.deserialize(response, GetAllGroupsResponse.class)).thenReturn(getAllGroupsResponse);
+
+        var result = underTest.getAllGroups(acc, boardId);
+
+        Assertions.assertEquals("groupId", result.get(0).groupId());
+        Assertions.assertEquals("title", result.get(0).groupName());
     }
 }

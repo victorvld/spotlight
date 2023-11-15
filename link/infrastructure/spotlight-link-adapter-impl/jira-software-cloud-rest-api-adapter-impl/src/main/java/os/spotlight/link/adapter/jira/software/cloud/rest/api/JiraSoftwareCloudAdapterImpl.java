@@ -11,6 +11,7 @@ import os.spotlight.link.adapter.tools.client.HttpClient;
 import os.spotlight.adapter.JiraGateway;
 import os.spotlight.link.adapter.tools.processor.JsonProcessor;
 import os.spotlight.link.adapter.tools.response.handling.strategy.ResponseHandlingStrategy;
+import os.spotlight.persistance.entity.Group;
 
 
 import java.util.List;
@@ -30,5 +31,10 @@ public class JiraSoftwareCloudAdapterImpl implements JiraGateway {
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var raw = processor.process(content, Constants.getAllBoardsSchemaClasspath(), RawBoards.class);
         return BoardsConverter.of(raw);
+    }
+
+    @Override
+    public List<Group> getAllGroups(Account capture, String boardId) {
+        return null;
     }
 }

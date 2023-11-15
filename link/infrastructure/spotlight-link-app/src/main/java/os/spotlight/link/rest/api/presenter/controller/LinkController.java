@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import os.spotlight.link.rest.api.presenter.dto.GetGroupsRequest;
+import os.spotlight.link.rest.api.presenter.dto.GroupDto;
 import os.spotlight.link.rest.api.presenter.mapper.BoardMapper;
 import os.spotlight.link.rest.api.presenter.dto.BoardDto;
 import os.spotlight.link.rest.api.presenter.dto.GetBoardsRequest;
@@ -40,7 +41,7 @@ LinkController {
 
     @GetMapping(value = "/groups", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    ResponseEntity<?> getAllGroups(@Valid @RequestBody GetGroupsRequest request) {
+    ResponseEntity<List<GroupDto>> getAllGroups(@Valid @RequestBody GetGroupsRequest request) {
         var groups = service.getAllGroupsForGivenAccountAndBoardId(request.accountId(), request.boardId());
         return new ResponseEntity<>(groupMapper.toDto(groups), HttpStatus.OK);
     }

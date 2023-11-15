@@ -20,6 +20,7 @@
         <spotlight.version>1.0.0-SNAPSHOT</spotlight.version>
         <mockito.version>4.8.1</mockito.version>
         <junit.version>RELEASE</junit.version>
+        <json2pojo.plugin.version>1.2.1</json2pojo.plugin.version>
     </properties>
 
     <dependencies>
@@ -70,4 +71,33 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>${json2pojo.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources/schemas</sourceDirectory>
+                            <outputDirectory>target/generated-sources</outputDirectory>
+                            <sourceType>jsonschema</sourceType>
+                            <annotationStyle>jackson2</annotationStyle>
+                            <generateBuilders>true</generateBuilders>
+                            <!--                        Generate builders in the generated classes-->
+                            <useInnerClassBuilders>true</useInnerClassBuilders>
+                            <initializeCollections>true</initializeCollections>
+                            <!--                        Use the name on the title param to set the generated classes names-->
+                            <useTitleAsClassname>true</useTitleAsClassname>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
