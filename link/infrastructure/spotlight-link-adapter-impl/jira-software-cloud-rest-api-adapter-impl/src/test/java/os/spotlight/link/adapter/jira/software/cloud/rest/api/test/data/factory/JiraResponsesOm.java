@@ -1,15 +1,15 @@
 package os.spotlight.link.adapter.jira.software.cloud.rest.api.test.data.factory;
 
-import jira.software.cloud.rest.api.RawBoard;
-import jira.software.cloud.rest.api.RawBoards;
+import jira.software.cloud.rest.api.GetAllBoardsResponse;
+import jira.software.cloud.rest.api.JiraBoard;
 
 import java.util.List;
 
-public class RawDataOm {
+public class JiraResponsesOm {
 
     public static class Boards {
-        public static RawBoards.RawBoardsBuilderBase<?> complete() {
-            return RawBoards.builder()
+        public static GetAllBoardsResponse.GetAllBoardsResponseBuilderBase<?> complete() {
+            return GetAllBoardsResponse.builder()
                     .withValues(List.of(Board.complete().build()))
                     .withTotal(10.0)
                     .withIsLast(true)
@@ -17,16 +17,16 @@ public class RawDataOm {
                     .withStartAt(0.0);
         }
 
-        public static RawBoards.RawBoardsBuilderBase<?> empty() {
-            return RawBoards.builder();
+        public static GetAllBoardsResponse.GetAllBoardsResponseBuilderBase<?> empty() {
+            return GetAllBoardsResponse.builder();
         }
     }
 
     public static class Board {
-        public static RawBoard.RawBoardBuilderBase<?> complete() {
-            return RawBoard.builder()
+        public static JiraBoard.JiraBoardBuilderBase<?> complete() {
+            return JiraBoard.builder()
                     .withName("name")
-                    .withId(1d);
+                    .withId(1);
         }
     }
 

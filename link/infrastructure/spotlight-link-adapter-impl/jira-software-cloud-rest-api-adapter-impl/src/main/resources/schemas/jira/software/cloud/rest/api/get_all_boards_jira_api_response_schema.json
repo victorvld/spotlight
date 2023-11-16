@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "RawBoards",
+  "title": "GetAllBoardsResponse",
   "type": "object",
   "properties": {
     "total": {
@@ -15,7 +15,7 @@
     "values": {
       "type": "array",
       "items": {
-        "title": "RawBoard",
+        "title": "JiraBoard",
         "type": "object",
         "properties": {
           "name": {
@@ -51,7 +51,7 @@
             }
           },
           "id": {
-            "type": "number"
+            "type": "integer"
           },
           "type": {
             "type": "string"
