@@ -1,9 +1,9 @@
-package os.spotlight.link.adapter.jira.software.cloud.rest.api.converter;
+package os.spotlight.link.adapter.jira.software.cloud.rest.api.mapper;
 
 import jira.software.cloud.rest.api.GetAllBoardsResponse;
 import jira.software.cloud.rest.api.GetAllGroupsResponse;
 import jira.software.cloud.rest.api.JiraBoard;
-import jira.software.cloud.rest.api.Sprint;
+import jira.software.cloud.rest.api.JiraSprint;
 import os.spotlight.persistance.entity.Board;
 import os.spotlight.persistance.entity.Group;
 
@@ -32,10 +32,10 @@ public class JiraMapper {
                 .toList();
     }
 
-    private static Group of(Sprint sprint) {
+    private static Group of(JiraSprint sprint) {
         return Group.builder()
-                .groupName(String.valueOf(sprint.getId()))
-                .groupId(sprint.getName())
+                .groupName(String.valueOf(sprint.getName()))
+                .groupId(String.valueOf(sprint.getId()))
                 .build();
     }
 }

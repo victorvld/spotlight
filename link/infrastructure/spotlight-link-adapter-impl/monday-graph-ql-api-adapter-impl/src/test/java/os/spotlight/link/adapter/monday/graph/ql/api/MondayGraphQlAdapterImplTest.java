@@ -1,13 +1,13 @@
 package os.spotlight.link.adapter.monday.graph.ql.api;
 
-import monday.graph.ql.api.GetAllGroupsResponse;
+import monday.graph.ql.api.boards.GetAllBoardsResponse;
+import monday.graph.ql.api.groups.GetAllGroupsResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import os.spotlight.persistance.entity.Account;
 import os.spotlight.link.adapter.monday.graph.ql.api.constant.Constants;
-import os.spotlight.link.adapter.monday.graph.ql.api.mapper.GetAllBoardsResponse;
-import os.spotlight.link.adapter.monday.graph.ql.api.test.data.factory.RawDataOm;
+import os.spotlight.link.adapter.monday.graph.ql.api.test.data.factory.MondayResponsesOm;
 import os.spotlight.link.adapter.tools.client.HttpClient;
 import os.spotlight.link.adapter.tools.processor.JsonDeserializer;
 import os.spotlight.link.adapter.tools.response.handling.strategy.ResponseHandlingStrategy;
@@ -27,7 +27,7 @@ class MondayGraphQlAdapterImplTest {
         var token = "token";
         var response = "response";
         var acc = Account.builder().token(token).build();
-        var rawBoards = RawDataOm.Boards.complete();
+        var rawBoards = MondayResponsesOm.Boards.complete().build();
         var statusCode = 999;
         when(client.sendGetRequest(null, token, Constants.getApiMondayV2(), Constants.getQueryGetAllBoards())).thenReturn(Map.entry(statusCode, response));
         when(resHandlingStrategy.handleResponse(statusCode, response)).thenReturn(response);
@@ -35,8 +35,8 @@ class MondayGraphQlAdapterImplTest {
 
         var result = underTest.getAllBoards(acc);
 
-        Assertions.assertEquals("1.0", result.get(0).boardId());
-        Assertions.assertEquals("name", result.get(0).boardName());
+        Assertions.assertEquals("boardId", result.get(0).boardId());
+        Assertions.assertEquals("boardName", result.get(0).boardName());
     }
 
     @Test
@@ -45,7 +45,7 @@ class MondayGraphQlAdapterImplTest {
         var response = "response";
         var boardId = "boardId";
         var acc = Account.builder().token(token).build();
-        var getAllGroupsResponse = RawDataOm.Groups.complete();
+        var getAllGroupsResponse = MondayResponsesOm.Groups.complete().build();
         var statusCode = 999;
         when(client.sendGetRequest(null, token, Constants.getApiMondayV2(), Constants.getQueryGetAllGroups(boardId))).thenReturn(Map.entry(statusCode, response));
         when(resHandlingStrategy.handleResponse(statusCode, response)).thenReturn(response);

@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import os.spotlight.persistance.entity.Account;
 import os.spotlight.persistance.entity.Board;
 import os.spotlight.link.adapter.jira.software.cloud.rest.api.constant.Constants;
-import os.spotlight.link.adapter.jira.software.cloud.rest.api.converter.JiraMapper;
+import os.spotlight.link.adapter.jira.software.cloud.rest.api.mapper.JiraMapper;
 import os.spotlight.link.adapter.tools.client.HttpClient;
 import os.spotlight.adapter.JiraGateway;
 import os.spotlight.link.adapter.tools.processor.JsonProcessor;

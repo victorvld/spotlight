@@ -23,8 +23,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "${spotlight.api.link.path}")
-public class
-LinkController {
+public class LinkController {
 
     private final LinkService service;
 

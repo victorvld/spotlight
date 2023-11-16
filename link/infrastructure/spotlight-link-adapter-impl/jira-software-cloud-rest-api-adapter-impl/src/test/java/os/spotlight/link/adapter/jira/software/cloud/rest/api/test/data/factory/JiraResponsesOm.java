@@ -1,7 +1,9 @@
 package os.spotlight.link.adapter.jira.software.cloud.rest.api.test.data.factory;
 
 import jira.software.cloud.rest.api.GetAllBoardsResponse;
+import jira.software.cloud.rest.api.GetAllGroupsResponse;
 import jira.software.cloud.rest.api.JiraBoard;
+import jira.software.cloud.rest.api.JiraSprint;
 
 import java.util.List;
 
@@ -22,10 +24,31 @@ public class JiraResponsesOm {
         }
     }
 
+    public static class Groups {
+
+        public static GetAllGroupsResponse.GetAllGroupsResponseBuilderBase<?> complete() {
+            return GetAllGroupsResponse.builder()
+                    .withValues(List.of(Group.complete().build()))
+                    .withTotal(10.0)
+                    .withIsLast(true)
+                    .withMaxResults(100.0)
+                    .withStartAt(0.0);
+
+        }
+    }
+
     public static class Board {
         public static JiraBoard.JiraBoardBuilderBase<?> complete() {
             return JiraBoard.builder()
-                    .withName("name")
+                    .withName("boardName")
+                    .withId(1);
+        }
+    }
+
+    public static class Group {
+        public static JiraSprint.JiraSprintBuilderBase<?> complete() {
+            return JiraSprint.builder()
+                    .withName("groupName")
                     .withId(1);
         }
     }

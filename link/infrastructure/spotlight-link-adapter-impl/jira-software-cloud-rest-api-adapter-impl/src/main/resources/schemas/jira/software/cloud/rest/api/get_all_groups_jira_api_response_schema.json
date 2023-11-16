@@ -19,7 +19,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "title": "Sprint",
+        "title": "JiraSprint",
         "properties": {
           "id": {
             "type": "integer"
