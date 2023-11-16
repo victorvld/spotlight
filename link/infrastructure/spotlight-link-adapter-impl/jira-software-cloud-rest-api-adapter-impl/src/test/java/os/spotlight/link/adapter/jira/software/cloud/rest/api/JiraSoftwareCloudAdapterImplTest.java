@@ -36,7 +36,7 @@ class JiraSoftwareCloudAdapterImplTest {
 
         var result = underTest.getAllBoards(acc);
 
-        Assertions.assertEquals("1.0", result.get(0).boardId());
+        Assertions.assertEquals("1", result.get(0).boardId());
         Assertions.assertEquals("name", result.get(0).boardName());
     }
 }
