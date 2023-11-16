@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 public class OkHttpClient implements HttpClient {
 
     private final okhttp3.OkHttpClient client = new okhttp3.OkHttpClient.Builder()
-            .readTimeout(1000, TimeUnit.MILLISECONDS)
-            .writeTimeout(1000, TimeUnit.MILLISECONDS)
+            .readTimeout(10000, TimeUnit.MILLISECONDS)
+            .writeTimeout(10000, TimeUnit.MILLISECONDS)
             .build();
 
     @Override

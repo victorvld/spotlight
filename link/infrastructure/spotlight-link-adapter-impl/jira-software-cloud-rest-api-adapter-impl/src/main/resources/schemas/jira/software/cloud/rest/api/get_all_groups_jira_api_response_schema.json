@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GetAllGroupsResponse",
+  "type": "object",
+  "properties": {
+    "maxResults": {
+      "type": "number"
+    },
+    "startAt": {
+      "type": "number"
+    },
+    "total": {
+      "type": "number"
+    },
+    "isLast": {
+      "type": "boolean"
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "JiraSprint",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "self": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "self",
+          "state",
+          "name",
+          "goal"
+        ]
+      }
+    }
+  },
+  "required": [
+    "maxResults",
+    "startAt",
+    "total",
+    "isLast",
+    "values"
+  ]
+}

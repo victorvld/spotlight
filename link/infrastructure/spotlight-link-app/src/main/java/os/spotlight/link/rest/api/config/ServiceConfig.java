@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import os.spotlight.link.rest.api.factory.impl.ProjectManagerVendorFactoryImpl;
-import os.spotlight.service.LinkService;
+import os.spotlight.persistance.entity.LinkService;
 
 @Configuration
 @RequiredArgsConstructor
