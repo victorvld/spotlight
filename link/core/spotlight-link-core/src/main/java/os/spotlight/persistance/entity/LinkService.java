@@ -25,4 +25,8 @@ public class LinkService {
         return this.projectManagerVendorFactory.get(account.type()).getAllGroups(account, boardId);
 
     }
+
+    public List<Item> getAllItems(String accountId, String boardId, String groupId) {
+        return null;
+    }
 }

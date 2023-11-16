@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import os.spotlight.link.rest.api.presenter.dto.GetGroupsRequest;
+import os.spotlight.link.rest.api.presenter.dto.GetItemsRequest;
 import os.spotlight.link.rest.api.presenter.dto.GroupDto;
 import os.spotlight.link.rest.api.presenter.mapper.BoardMapper;
 import os.spotlight.link.rest.api.presenter.dto.BoardDto;
 import os.spotlight.link.rest.api.presenter.dto.GetBoardsRequest;
 import os.spotlight.link.rest.api.presenter.mapper.GroupMapper;
+import os.spotlight.link.rest.api.presenter.mapper.ItemDto;
+import os.spotlight.link.rest.api.presenter.mapper.ItemsMapper;
 import os.spotlight.persistance.entity.LinkService;
 
 import java.util.List;
@@ -31,6 +34,8 @@ public class LinkController {
 
     private final GroupMapper groupMapper;
 
+    private final ItemsMapper itemsMapper;
+
     @GetMapping(value = "/boards", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     ResponseEntity<List<BoardDto>> getAllBoards(@Valid @RequestBody GetBoardsRequest request) {
@@ -44,4 +49,12 @@ public class LinkController {
         var groups = service.getAllGroupsForGivenAccountAndBoardId(request.accountId(), request.boardId());
         return new ResponseEntity<>(groupMapper.toDto(groups), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    ResponseEntity<List<ItemDto>> getAllGroups(@Valid @RequestBody GetItemsRequest request) {
+        var items = service.getAllItems(request.accountId(), request.boardId(), request.groupId());
+        return new ResponseEntity<>(itemsMapper.toDto(items), HttpStatus.OK);
+    }
+
 }
