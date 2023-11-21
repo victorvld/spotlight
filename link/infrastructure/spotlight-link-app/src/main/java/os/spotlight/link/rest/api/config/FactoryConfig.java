@@ -14,10 +14,12 @@ public class FactoryConfig {
     private final HttpClientConfig httpClientConfig;
     private final JsonConfig jsonConfig;
     private final StrategyConfig strategyConfig;
+
     @Bean
     public ProjectManagerVendorFactoryImpl createFactoryImpl() {
         var jiraGateway = new JiraSoftwareCloudAdapterImpl(
                 jsonConfig.createJsonProcessor(jsonConfig.createJsonDeserializer()),
+                jsonConfig.createJsonDeserializer(),
                 httpClientConfig.createHttpClient(),
                 strategyConfig.createThrowExceptionStrategy()
         );

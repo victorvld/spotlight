@@ -1,11 +1,14 @@
 package os.spotlight.link.adapter.jira.software.cloud.rest.api.mapper;
 
-import jira.software.cloud.rest.api.GetAllBoardsResponse;
-import jira.software.cloud.rest.api.GetAllGroupsResponse;
-import jira.software.cloud.rest.api.JiraBoard;
-import jira.software.cloud.rest.api.JiraSprint;
+import jira.software.cloud.rest.api.boards.GetAllBoardsResponse;
+import jira.software.cloud.rest.api.boards.JiraBoard;
+import jira.software.cloud.rest.api.issues.GetAllItemsResponse;
+import jira.software.cloud.rest.api.issues.JiraIssue;
+import jira.software.cloud.rest.api.sprints.GetAllGroupsResponse;
+import jira.software.cloud.rest.api.sprints.JiraSprint;
 import os.spotlight.persistance.entity.Board;
 import os.spotlight.persistance.entity.Group;
+import os.spotlight.persistance.entity.Item;
 
 import java.util.List;
 
@@ -36,6 +39,22 @@ public class JiraMapper {
         return Group.builder()
                 .groupName(String.valueOf(sprint.getName()))
                 .groupId(String.valueOf(sprint.getId()))
+                .build();
+    }
+
+    public static List<Item> of(GetAllItemsResponse response) {
+        return response.getIssues().stream()
+                .map(JiraMapper::of)
+                .toList();
+    }
+
+    private static Item of(JiraIssue issue) {
+        return Item.builder()
+                .id(issue.getId())
+                .name(issue.getKey())
+                .summary(issue.getFields().getSummary())
+                .estimation(String.valueOf(issue.getFields().getCustomfield10016()))
+                .status(issue.getFields().getStatus().getName())
                 .build();
     }
 }

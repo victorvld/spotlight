@@ -13,6 +13,7 @@ import os.spotlight.adapter.MondayGateway;
 import os.spotlight.link.adapter.tools.processor.JsonDeserializer;
 import os.spotlight.link.adapter.tools.response.handling.strategy.ResponseHandlingStrategy;
 import os.spotlight.persistance.entity.Group;
+import os.spotlight.persistance.entity.Item;
 
 import java.util.List;
 
@@ -39,5 +40,10 @@ public class MondayGraphQlAdapterImpl implements MondayGateway {
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var getAllGroupsResponse = deserializer.deserialize(content, GetAllGroupsResponse.class);
         return MondayMapper.of(getAllGroupsResponse);
+    }
+
+    @Override
+    public List<Item> getAllItems(Account account, String boardId, String groupId) {
+        return null;
     }
 }

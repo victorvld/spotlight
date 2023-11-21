@@ -18,7 +18,7 @@ import os.spotlight.link.rest.api.presenter.dto.GetBoardsRequest;
 import os.spotlight.link.rest.api.presenter.dto.GetGroupsRequest;
 import os.spotlight.link.rest.api.presenter.dto.GetItemsRequest;
 import os.spotlight.link.rest.api.presenter.mapper.BoardMapper;
-import os.spotlight.persistance.entity.LinkService;
+import os.spotlight.service.LinkService;
 
 import java.util.stream.Stream;
 
@@ -77,7 +77,7 @@ class LinkControllerTest {
 
         mockMvc.perform(request).andExpect(status().isOk());
 
-        verify(mockService, times(1)).getAllBoardsForGivenAccount(captor.capture());
+        verify(mockService, times(1)).getAllBoards(captor.capture());
         Assertions.assertEquals(accountId, captor.getValue());
     }
 
@@ -93,7 +93,7 @@ class LinkControllerTest {
 
         mockMvc.perform(request).andExpect(status().isOk());
 
-        verify(mockService, times(1)).getAllGroupsForGivenAccountAndBoardId(accCaptor.capture(), boardCaptor.capture());
+        verify(mockService, times(1)).getAllGroups(accCaptor.capture(), boardCaptor.capture());
         Assertions.assertEquals(accountId, accCaptor.getValue());
         Assertions.assertEquals(boardId, boardCaptor.getValue());
     }

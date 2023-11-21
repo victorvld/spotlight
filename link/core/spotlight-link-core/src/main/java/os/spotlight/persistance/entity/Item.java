@@ -1,4 +1,7 @@
 package os.spotlight.persistance.entity;
 
-public record Item(String name, String id, String status) {
+import lombok.Builder;
+
+@Builder
+public record Item(String name, String id, String status, String estimation, String summary) {
 }
