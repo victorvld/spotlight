@@ -25,4 +25,16 @@ class JiraMapperTest {
         Assertions.assertEquals(getAllGroupsResponse.getValues().get(0).getName(), result.get(0).groupName());
     }
 
+    @Test
+    void toItems() {
+        var getAllItemsResponse = JiraResponsesOm.Items.complete().build();
+
+        var result = JiraMapper.of(getAllItemsResponse);
+
+        Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getId(), result.get(0).id());
+        Assertions.assertEquals("issueKey : Issue Summary", result.get(0).name());
+        Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getFields().getStatus().getName(), result.get(0).status());
+        Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getFields().getCustomfield10016().toString(), result.get(0).estimation());
+    }
+
 }

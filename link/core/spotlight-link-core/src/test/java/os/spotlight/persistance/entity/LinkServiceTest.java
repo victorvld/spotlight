@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import os.spotlight.adapter.ProjectManagerVendorAdapter;
 import os.spotlight.factory.ProjectManagerVendorFactory;
 import os.spotlight.repository.AccountRepositoryService;
+import os.spotlight.service.LinkService;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -29,7 +30,7 @@ class LinkServiceTest {
         when(mockRepository.findByEntityId(accountId)).thenReturn(account);
         when(mockFactory.get(type)).thenReturn(mockAdapter);
 
-        underTest.getAllBoardsForGivenAccount(accountId);
+        underTest.getAllBoards(accountId);
 
         verify(mockRepository, times(1)).findByEntityId(accountIdCaptor.capture());
         verify(mockFactory, times(1)).get(typeCaptor.capture());
@@ -52,7 +53,7 @@ class LinkServiceTest {
         when(mockRepository.findByEntityId(accountId)).thenReturn(account);
         when(mockFactory.get(type)).thenReturn(mockAdapter);
 
-        underTest.getAllGroupsForGivenAccountAndBoardId(accountId, boardId);
+        underTest.getAllGroups(accountId, boardId);
 
         verify(mockRepository, times(1)).findByEntityId(accountIdCaptor.capture());
         verify(mockFactory, times(1)).get(typeCaptor.capture());
@@ -61,5 +62,32 @@ class LinkServiceTest {
         Assertions.assertEquals(type, typeCaptor.getValue());
         Assertions.assertEquals(account, accCaptor.getValue());
         Assertions.assertEquals(boardId, boardIdCaptor.getValue());
+    }
+
+    @Test
+    void getAllItemsForGivenAccountGroupIdAndBoardId() {
+        var boardId = "boardId";
+        var groupId = "groupId";
+        var accountId = "acc";
+        var type = "type";
+        var account = Account.builder().type(type).build();
+        var accountIdCaptor = ArgumentCaptor.forClass(String.class);
+        var typeCaptor = ArgumentCaptor.forClass(String.class);
+        var accCaptor = ArgumentCaptor.forClass(Account.class);
+        var boardIdCaptor = ArgumentCaptor.forClass(String.class);
+        var groupIdCaptor = ArgumentCaptor.forClass(String.class);
+        when(mockRepository.findByEntityId(accountId)).thenReturn(account);
+        when(mockFactory.get(type)).thenReturn(mockAdapter);
+
+        underTest.getAllItems(accountId, boardId, groupId);
+
+        verify(mockRepository, times(1)).findByEntityId(accountIdCaptor.capture());
+        verify(mockFactory, times(1)).get(typeCaptor.capture());
+        verify(mockAdapter, times(1)).getAllItems(accCaptor.capture(), boardIdCaptor.capture(), groupIdCaptor.capture());
+        Assertions.assertEquals(accountId, accountIdCaptor.getValue());
+        Assertions.assertEquals(type, typeCaptor.getValue());
+        Assertions.assertEquals(account, accCaptor.getValue());
+        Assertions.assertEquals(boardId, boardIdCaptor.getValue());
+        Assertions.assertEquals(groupId, groupIdCaptor.getValue());
     }
 }

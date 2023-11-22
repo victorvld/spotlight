@@ -2,6 +2,7 @@ package os.spotlight.link.adapter.monday.graph.ql.api;
 
 import monday.graph.ql.api.boards.GetAllBoardsResponse;
 import monday.graph.ql.api.groups.GetAllGroupsResponse;
+import monday.graph.ql.api.items.GetAllItemsResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -40,7 +41,7 @@ class MondayGraphQlAdapterImplTest {
     }
 
     @Test
-    void WhenSendGetAllGroupsRequestThenReturnsEntityBoards() {
+    void WhenSendGetAllGroupsRequestThenReturnsEntityGroups() {
         var token = "token";
         var response = "response";
         var boardId = "boardId";
@@ -55,5 +56,26 @@ class MondayGraphQlAdapterImplTest {
 
         Assertions.assertEquals("groupId", result.get(0).groupId());
         Assertions.assertEquals("title", result.get(0).groupName());
+    }
+
+    @Test
+    void WhenSendGetAllItemsRequestThenReturnsEntityItems() {
+        var token = "token";
+        var response = "response";
+        var boardId = "boardId";
+        var groupId = "groupId";
+        var acc = Account.builder().token(token).build();
+        var getAllItemsResponse = MondayResponsesOm.Items.complete().build();
+        var statusCode = 999;
+        when(client.sendGetRequest(null, token, Constants.getApiMondayV2(), Constants.getQueryGetAllItems(boardId, groupId))).thenReturn(Map.entry(statusCode, response));
+        when(resHandlingStrategy.handleResponse(statusCode, response)).thenReturn(response);
+        when(deserializer.deserialize(response, GetAllItemsResponse.class)).thenReturn(getAllItemsResponse);
+
+        var result = underTest.getAllItems(acc, boardId, groupId);
+
+        Assertions.assertEquals("itemId", result.get(0).id());
+        Assertions.assertEquals("itemName", result.get(0).name());
+        Assertions.assertEquals("5", result.get(0).estimation());
+        Assertions.assertEquals("Done", result.get(0).status());
     }
 }
