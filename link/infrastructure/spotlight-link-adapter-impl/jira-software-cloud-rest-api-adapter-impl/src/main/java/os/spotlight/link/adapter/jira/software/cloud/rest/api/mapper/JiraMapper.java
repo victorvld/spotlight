@@ -49,10 +49,10 @@ public class JiraMapper {
     }
 
     private static Item of(JiraIssue issue) {
+        var issueName = String.format("%s : %s", issue.getKey(), issue.getFields().getSummary());
         return Item.builder()
                 .id(issue.getId())
-                .name(issue.getKey())
-                .summary(issue.getFields().getSummary())
+                .name(issueName)
                 .estimation(String.valueOf(issue.getFields().getCustomfield10016()))
                 .status(issue.getFields().getStatus().getName())
                 .build();

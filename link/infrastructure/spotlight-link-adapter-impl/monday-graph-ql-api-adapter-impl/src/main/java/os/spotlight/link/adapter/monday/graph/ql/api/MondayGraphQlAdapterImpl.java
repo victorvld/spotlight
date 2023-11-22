@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import monday.graph.ql.api.boards.GetAllBoardsResponse;
 import monday.graph.ql.api.groups.GetAllGroupsResponse;
+import monday.graph.ql.api.items.GetAllItemsResponse;
 import os.spotlight.persistance.entity.Account;
 import os.spotlight.persistance.entity.Board;
 import os.spotlight.link.adapter.monday.graph.ql.api.constant.Constants;
@@ -26,7 +27,7 @@ public class MondayGraphQlAdapterImpl implements MondayGateway {
 
     @Override
     public List<Board> getAllBoards(Account account) {
-        log.info("Retrieving all boards for domain {}.", Constants.API_MONDAY_V2);
+        log.info("Retrieving all boards for domain {}.", Constants.getApiMondayV2());
         var response = client.sendGetRequest(account.username(), account.token(), Constants.getApiMondayV2(), Constants.getQueryGetAllBoards());
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var getAllBoardsResponse = deserializer.deserialize(content, GetAllBoardsResponse.class);
@@ -35,7 +36,7 @@ public class MondayGraphQlAdapterImpl implements MondayGateway {
 
     @Override
     public List<Group> getAllGroups(Account account, String boardId) {
-        log.info("Retrieving all groups for domain {}. And boardId {}", Constants.API_MONDAY_V2, boardId);
+        log.info("Retrieving all groups for domain {}. And boardId {}", Constants.getApiMondayV2(), boardId);
         var response = client.sendGetRequest(account.username(), account.token(), Constants.getApiMondayV2(), Constants.getQueryGetAllGroups(boardId));
         var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
         var getAllGroupsResponse = deserializer.deserialize(content, GetAllGroupsResponse.class);
@@ -44,6 +45,10 @@ public class MondayGraphQlAdapterImpl implements MondayGateway {
 
     @Override
     public List<Item> getAllItems(Account account, String boardId, String groupId) {
-        return null;
+        log.info("Retrieving all groups for domain {}, boardId {}, and groupId {}", Constants.getApiMondayV2(), boardId, groupId);
+        var response = client.sendGetRequest(account.username(), account.token(), Constants.getApiMondayV2(), Constants.getQueryGetAllItems(boardId, groupId));
+        var content = resHandlingStrategy.handleResponse(response.getKey(), response.getValue());
+        var deserialized = deserializer.deserialize(content, GetAllItemsResponse.class);
+        return MondayMapper.of(deserialized);
     }
 }

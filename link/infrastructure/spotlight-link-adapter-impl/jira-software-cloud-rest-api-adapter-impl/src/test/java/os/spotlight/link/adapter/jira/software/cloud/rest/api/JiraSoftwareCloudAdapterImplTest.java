@@ -21,7 +21,6 @@ import static org.mockito.Mockito.when;
 class JiraSoftwareCloudAdapterImplTest {
     private final JsonProcessor processor = Mockito.mock(JsonProcessor.class);
     private final HttpClient client = Mockito.mock(HttpClient.class);
-
     private final JsonDeserializer deserializer = Mockito.mock(JsonDeserializer.class);
     private final ResponseHandlingStrategy resHandlingStrategy = Mockito.mock(ResponseHandlingStrategy.class);
     private final JiraSoftwareCloudAdapterImpl underTest = new JiraSoftwareCloudAdapterImpl(processor, deserializer, client, resHandlingStrategy);
@@ -83,9 +82,8 @@ class JiraSoftwareCloudAdapterImplTest {
         var result = underTest.getAllItems(acc, boardId, groupId);
 
         Assertions.assertEquals("issueId", result.get(0).id());
-        Assertions.assertEquals("issueKey", result.get(0).name());
+        Assertions.assertEquals("issueKey : Issue Summary", result.get(0).name());
         Assertions.assertEquals("Done", result.get(0).status());
-        Assertions.assertEquals("Issue Summary", result.get(0).summary());
         Assertions.assertEquals("1", result.get(0).estimation());
     }
 }

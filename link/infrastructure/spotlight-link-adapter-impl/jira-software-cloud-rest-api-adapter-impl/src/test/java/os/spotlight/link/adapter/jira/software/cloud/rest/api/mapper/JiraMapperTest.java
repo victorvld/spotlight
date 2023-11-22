@@ -32,9 +32,8 @@ class JiraMapperTest {
         var result = JiraMapper.of(getAllItemsResponse);
 
         Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getId(), result.get(0).id());
-        Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getKey(), result.get(0).name());
+        Assertions.assertEquals("issueKey : Issue Summary", result.get(0).name());
         Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getFields().getStatus().getName(), result.get(0).status());
-        Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getFields().getSummary(), result.get(0).summary());
         Assertions.assertEquals(getAllItemsResponse.getIssues().get(0).getFields().getCustomfield10016().toString(), result.get(0).estimation());
     }
 
